@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="fr" data-fr-scheme="system">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="format-detection" content="telephone=no,date=no,address=no,email=no,url=no">
+    <title>Qualité de l'eau</title>
+    <meta name="description" content="Site d'information sur la qualité de l'eau.">
+    <meta name="theme-color" content="#000091">
+    <link rel="apple-touch-icon" href="%BASE_URL%favicon/apple-touch-icon.png">
+    <link rel="icon" href="%BASE_URL%favicon/favicon.svg" type="image/svg+xml">
+    <link rel="shortcut icon" href="%BASE_URL%favicon/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="%BASE_URL%favicon/manifest.webmanifest" crossorigin="use-credentials">
+</head>
+
+<body>
+    <script type="module">
+        const e = "system", t = "dark", c = "dark", o = "data-fr-theme", a = "data-fr-scheme", r = `:root[${o}], :root[${a}]`, m = () => { document.documentElement.setAttribute(o, c), document.documentElement.style.colorScheme = "dark" }, n = () => { window.matchMedia("(prefers-color-scheme: dark)").matches && m() }; (() => { if (document.documentElement.matches(r)) { const c = (() => { try { return "localStorage" in window && null !== window.localStorage } catch (e) { return !1 } })() ? localStorage.getItem("scheme") : "", o = document.documentElement.getAttribute(a); switch (!0) { case c === t: m(); break; case c === e: n(); break; case o === t: m(); break; case o === e: n() } } })();
+    </script>
+
+    <!-- En-tête DSFR — structure copiée de node_modules/@gouvfr/dsfr/example/component/header/index.html
+         (variante « Header avec nom de service, lien d'accès »), sans le bloc fr-header__tools.
+         Contenu (logo, service) conforme à la maquette Figma. Liens de menu provisoires,
+         à remplacer selon les maquettes Figma page par page. -->
+    <header role="banner" class="fr-header">
+        <div class="fr-header__body">
+            <div class="fr-container">
+                <div class="fr-header__body-row">
+                    <div class="fr-header__brand fr-enlarge-link">
+                        <div class="fr-header__brand-top">
+                            <div class="fr-header__logo">
+                                <p class="fr-logo">
+                                    Ministère
+                                    <br>de la Santé, des Familles,
+                                    <br>de l'Autonomie
+                                    <br>et des Personnes Handicapées
+                                </p>
+                            </div>
+                            <div class="fr-header__navbar">
+                                <button data-fr-opened="false" aria-controls="modal-menu" title="Menu" type="button" id="button-menu" class="fr-btn--menu fr-btn">Menu</button>
+                            </div>
+                        </div>
+                        <div class="fr-header__service">
+                            <a href="%BASE_URL%" title="Accueil - Qualité de l'eau - Ministère de la Santé, des Familles, de l'Autonomie et des Personnes Handicapées">
+                                <p class="fr-header__service-title">
+                                    Qualité de l'eau
+                                </p>
+                            </a>
+                            <p class="fr-header__service-tagline">Suivez la qualité de l'eau en France</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fr-header__menu fr-modal" id="modal-menu" aria-labelledby="button-menu">
+            <div class="fr-container">
+                <button aria-controls="modal-menu" title="Fermer" type="button" id="button-menu-close" class="fr-btn--close fr-btn">Fermer</button>
+                <div class="fr-header__menu-links">
+                </div>
+                <nav class="fr-nav" id="navigation-main" role="navigation" aria-label="Menu principal">
+                    <ul class="fr-nav__list">
+                        <li class="fr-nav__item">
+                            <a href="%BASE_URL%" class="fr-nav__link" aria-current="page">Accueil</a>
+                        </li>
+                        <li class="fr-nav__item">
+                            <a href="#" class="fr-nav__link">Comprendre l'eau</a>
+                        </li>
+                        <li class="fr-nav__item">
+                            <a href="#" class="fr-nav__link">Résultats d'analyses</a>
+                        </li>
+                        <li class="fr-nav__item">
+                            <a href="#" class="fr-nav__link">Actualités</a>
+                        </li>
+                        <li class="fr-nav__item">
+                            <a href="#" class="fr-nav__link">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main id="content" role="main">
+        <div class="fr-container fr-py-6w">
+            <h1>Qualité de l'eau</h1>
+            <p>Contenu à venir — en attente des maquettes Figma page par page.</p>
+        </div>
+    </main>
+
+    <!-- Pied de page DSFR — structure copiée de node_modules/@gouvfr/dsfr/example/component/footer/index.html
+         (variante « Pied de page minimal ») et du bouton « Paramètres d'affichage » intégré au
+         fr-footer__bottom-list, copié de node_modules/@gouvfr/dsfr/example/component/display/index.html. -->
+    <footer class="fr-footer" role="contentinfo" id="footer">
+        <div class="fr-container">
+            <div class="fr-footer__body">
+                <div class="fr-footer__brand fr-enlarge-link">
+                    <a id="footer-brand-link" title="Retour à l'accueil du site - Ministère de la Santé, des Familles, de l'Autonomie et des Personnes Handicapées" href="%BASE_URL%">
+                        <p class="fr-logo">
+                            Ministère
+                            <br>de la Santé, des Familles,
+                            <br>de l'Autonomie
+                            <br>et des Personnes Handicapées
+                        </p>
+                    </a>
+                </div>
+                <div class="fr-footer__content">
+                    <p class="fr-footer__content-desc">Qualité de l'eau est le service public pour s'informer sur la qualité de l'eau en France grâce aux données officielles du contrôle sanitaire.</p>
+                    <ul class="fr-footer__content-list">
+                        <li class="fr-footer__content-item">
+                            <a title="sante.gouv.fr - nouvelle fenêtre" href="https://sante.gouv.fr" target="_blank" rel="noopener external" class="fr-footer__content-link">sante.gouv.fr</a>
+                        </li>
+                        <li class="fr-footer__content-item">
+                            <a title="sante.fr - nouvelle fenêtre" href="https://www.sante.fr" target="_blank" rel="noopener external" class="fr-footer__content-link">sante.fr</a>
+                        </li>
+                        <li class="fr-footer__content-item">
+                            <a title="EauFrance - nouvelle fenêtre" href="https://www.eaufrance.fr" target="_blank" rel="noopener external" class="fr-footer__content-link">EauFrance</a>
+                        </li>
+                        <li class="fr-footer__content-item">
+                            <a title="VigiEau - nouvelle fenêtre" href="https://vigieau.gouv.fr" target="_blank" rel="noopener external" class="fr-footer__content-link">VigiEau</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fr-footer__bottom">
+                <ul class="fr-footer__bottom-list">
+                    <li class="fr-footer__bottom-item">
+                        <a href="#" class="fr-footer__bottom-link">Accessibilité : partiellement conforme</a>
+                    </li>
+                    <li class="fr-footer__bottom-item">
+                        <a href="#" class="fr-footer__bottom-link">Mentions légales</a>
+                    </li>
+                    <li class="fr-footer__bottom-item">
+                        <a href="#" class="fr-footer__bottom-link">Données personnelles</a>
+                    </li>
+                    <li class="fr-footer__bottom-item">
+                        <a href="#" class="fr-footer__bottom-link">Gestion des cookies</a>
+                    </li>
+                    <li class="fr-footer__bottom-item">
+                        <a href="#" class="fr-footer__bottom-link">Plan du site</a>
+                    </li>
+                    <li class="fr-footer__bottom-item">
+                        <button aria-controls="fr-theme-modal" data-fr-opened="false" title="Paramètres d'affichage" type="button" id="button-display" class="fr-btn--display fr-btn">Paramètres d'affichage</button>
+                    </li>
+                </ul>
+                <div class="fr-footer__bottom-copy">
+                    <p>Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener external" title="Licence etalab - nouvelle fenêtre">licence etalab-2.0</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fenêtre modale « Paramètres d'affichage » — copiée de
+         node_modules/@gouvfr/dsfr/example/component/display/index.html -->
+    <dialog id="fr-theme-modal" class="fr-modal" aria-labelledby="fr-theme-modal-title">
+        <div class="fr-container fr-container--fluid fr-container-md">
+            <div class="fr-grid-row fr-grid-row--center">
+                <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+                    <div class="fr-modal__body">
+                        <div class="fr-modal__header">
+                            <button aria-controls="fr-theme-modal" title="Fermer" type="button" id="button-theme-modal-close" class="fr-btn--close fr-btn">Fermer</button>
+                        </div>
+                        <div class="fr-modal__content">
+                            <h2 id="fr-theme-modal-title" class="fr-modal__title">
+                                Paramètres d'affichage
+                            </h2>
+                            <div id="fr-display" class="fr-display">
+                                <fieldset class="fr-fieldset" id="display-fieldset">
+                                    <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="display-fieldset-legend">
+                                        Choisissez un thème pour personnaliser l'apparence du site.
+                                    </legend>
+                                    <div class="fr-fieldset__element">
+                                        <div class="fr-radio-group fr-radio-rich">
+                                            <input value="light" type="radio" id="fr-radios-theme-light" name="fr-radios-theme">
+                                            <label class="fr-label" for="fr-radios-theme-light">
+                                                Thème clair
+                                            </label>
+                                            <div class="fr-radio-rich__pictogram">
+                                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                                    <use class="fr-artwork-decorative" href="%BASE_URL%artwork/pictograms/environment/sun.svg#artwork-decorative"></use>
+                                                    <use class="fr-artwork-minor" href="%BASE_URL%artwork/pictograms/environment/sun.svg#artwork-minor"></use>
+                                                    <use class="fr-artwork-major" href="%BASE_URL%artwork/pictograms/environment/sun.svg#artwork-major"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fr-fieldset__element">
+                                        <div class="fr-radio-group fr-radio-rich">
+                                            <input value="dark" type="radio" id="fr-radios-theme-dark" name="fr-radios-theme">
+                                            <label class="fr-label" for="fr-radios-theme-dark">
+                                                Thème sombre
+                                            </label>
+                                            <div class="fr-radio-rich__pictogram">
+                                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                                    <use class="fr-artwork-decorative" href="%BASE_URL%artwork/pictograms/environment/moon.svg#artwork-decorative"></use>
+                                                    <use class="fr-artwork-minor" href="%BASE_URL%artwork/pictograms/environment/moon.svg#artwork-minor"></use>
+                                                    <use class="fr-artwork-major" href="%BASE_URL%artwork/pictograms/environment/moon.svg#artwork-major"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fr-fieldset__element">
+                                        <div class="fr-radio-group fr-radio-rich">
+                                            <input value="system" type="radio" id="fr-radios-theme-system" name="fr-radios-theme">
+                                            <label class="fr-label" for="fr-radios-theme-system">
+                                                Système
+                                                <span class="fr-hint-text">Utilise les paramètres système</span>
+                                            </label>
+                                            <div class="fr-radio-rich__pictogram">
+                                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                                    <use class="fr-artwork-decorative" href="%BASE_URL%artwork/pictograms/system/system.svg#artwork-decorative"></use>
+                                                    <use class="fr-artwork-minor" href="%BASE_URL%artwork/pictograms/system/system.svg#artwork-minor"></use>
+                                                    <use class="fr-artwork-major" href="%BASE_URL%artwork/pictograms/system/system.svg#artwork-major"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+{
+  "name": "qualite-eau",
+  "version": "1.0.0",
+  "description": "Prototype IA — Qualité de l'eau",
+  "main": "index.js",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RaphaelBDesigner/qualite-eau.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RaphaelBDesigner/qualite-eau/issues"
+  },
+  "homepage": "https://github.com/RaphaelBDesigner/qualite-eau#readme",
+  "dependencies": {
+    "@gouvfr/dsfr": "^1.15.3"
+  },
+  "devDependencies": {
+    "vite": "^8.2.2"
+  }
+}
