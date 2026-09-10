@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="fr" data-fr-scheme="system">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="format-detection" content="telephone=no,date=no,address=no,email=no,url=no">
+    <title>Qualité de l'eau</title>
+    <meta name="description" content="Site d'information sur la qualité de l'eau.">
+    <meta name="theme-color" content="#000091">
+    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml">
+    <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="/favicon/manifest.webmanifest" crossorigin="use-credentials">
+</head>
+
+<body>
+    <script type="module">
+        const e = "system", t = "dark", c = "dark", o = "data-fr-theme", a = "data-fr-scheme", r = `:root[${o}], :root[${a}]`, m = () => { document.documentElement.setAttribute(o, c), document.documentElement.style.colorScheme = "dark" }, n = () => { window.matchMedia("(prefers-color-scheme: dark)").matches && m() }; (() => { if (document.documentElement.matches(r)) { const c = (() => { try { return "localStorage" in window && null !== window.localStorage } catch (e) { return !1 } })() ? localStorage.getItem("scheme") : "", o = document.documentElement.getAttribute(a); switch (!0) { case c === t: m(); break; case c === e: n(); break; case o === t: m(); break; case o === e: n() } } })();
+    </script>
+
+    <!-- En-tête DSFR — structure copiée de node_modules/@gouvfr/dsfr/example/component/header/index.html
+         (variante « Header avec nom de service, lien d'accès »), sans le bloc fr-header__tools.
+         Contenu (logo, service, liens de menu) provisoire, à remplacer selon les maquettes Figma. -->
+    <header role="banner" class="fr-header">
+        <div class="fr-header__body">
+            <div class="fr-container">
+                <div class="fr-header__body-row">
+                    <div class="fr-header__brand fr-enlarge-link">
+                        <div class="fr-header__brand-top">
+                            <div class="fr-header__logo">
+                                <p class="fr-logo">
+                                    Intitulé
+                                    <br>officiel
+                                </p>
+                            </div>
+                            <div class="fr-header__navbar">
+                                <button data-fr-opened="false" aria-controls="modal-menu" title="Menu" type="button" id="button-menu" class="fr-btn--menu fr-btn">Menu</button>
+                            </div>
+                        </div>
+                        <div class="fr-header__service">
+                            <a href="/" title="Accueil - Qualité de l'eau">
+                                <p class="fr-header__service-title">
+                                    Qualité de l'eau
+                                </p>
+                            </a>
+                            <p class="fr-header__service-tagline">Suivi et information sur la qualité de l'eau</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fr-header__menu fr-modal" id="modal-menu" aria-labelledby="button-menu">
+            <div class="fr-container">
+                <button aria-controls="modal-menu" title="Fermer" type="button" id="button-menu-close" class="fr-btn--close fr-btn">Fermer</button>
+                <div class="fr-header__menu-links">
+                </div>
+                <nav class="fr-nav" id="navigation-main" role="navigation" aria-label="Menu principal">
+                    <ul class="fr-nav__list">
+                        <li class="fr-nav__item">
+                            <a href="/" class="fr-nav__link" aria-current="page">Accueil</a>
+                        </li>
+                        <li class="fr-nav__item">
+                            <a href="#" class="fr-nav__link">Comprendre l'eau</a>
+                        </li>
+                        <li class="fr-nav__item">
+                            <a href="#" class="fr-nav__link">Résultats d'analyses</a>
+                        </li>
+                        <li class="fr-nav__item">
+                            <a href="#" class="fr-nav__link">Actualités</a>
+                        </li>
+                        <li class="fr-nav__item">
+                            <a href="#" class="fr-nav__link">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main id="content" role="main">
+        <div class="fr-container fr-py-6w">
+            <h1>Qualité de l'eau</h1>
+            <p>Contenu à venir — en attente des maquettes Figma page par page.</p>
+        </div>
+    </main>
+
+    <!-- Pied de page DSFR — structure copiée de node_modules/@gouvfr/dsfr/example/component/footer/index.html
+         (variante « Pied de page avec navigation »), colonnes et liens provisoires
+         à remplacer selon les maquettes Figma. -->
+    <footer class="fr-footer" role="contentinfo" id="footer">
+        <div class="fr-footer__top">
+            <div class="fr-container">
+                <div class="fr-grid-row fr-grid-row--start fr-grid-row--gutters">
+                    <div class="fr-col-12 fr-col-sm-4">
+                        <h2 class="fr-footer__top-cat">
+                            La qualité de l'eau
+                        </h2>
+                        <ul class="fr-footer__top-list">
+                            <li>
+                                <a href="#" class="fr-footer__top-link">Comprendre l'eau</a>
+                            </li>
+                            <li>
+                                <a href="#" class="fr-footer__top-link">Résultats d'analyses</a>
+                            </li>
+                            <li>
+                                <a href="#" class="fr-footer__top-link">Carte interactive</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="fr-col-12 fr-col-sm-4">
+                        <h2 class="fr-footer__top-cat">
+                            Ressources
+                        </h2>
+                        <ul class="fr-footer__top-list">
+                            <li>
+                                <a href="#" class="fr-footer__top-link">Actualités</a>
+                            </li>
+                            <li>
+                                <a href="#" class="fr-footer__top-link">Foire aux questions</a>
+                            </li>
+                            <li>
+                                <a href="#" class="fr-footer__top-link">Glossaire</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="fr-col-12 fr-col-sm-4">
+                        <h2 class="fr-footer__top-cat">
+                            À propos
+                        </h2>
+                        <ul class="fr-footer__top-list">
+                            <li>
+                                <a href="#" class="fr-footer__top-link">Qui sommes-nous</a>
+                            </li>
+                            <li>
+                                <a href="#" class="fr-footer__top-link">Contact</a>
+                            </li>
+                            <li>
+                                <a href="#" class="fr-footer__top-link">Partenaires</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fr-container">
+            <div class="fr-footer__body">
+                <div class="fr-footer__brand fr-enlarge-link">
+                    <a id="footer-brand-link" title="Retour à l'accueil du site" href="/">
+                        <p class="fr-logo">
+                            Intitulé
+                            <br>officiel
+                        </p>
+                    </a>
+                </div>
+                <div class="fr-footer__content">
+                    <p class="fr-footer__content-desc">Qualité de l'eau est un site d'information sur la qualité de l'eau potable et des milieux aquatiques.</p>
+                </div>
+            </div>
+            <div class="fr-footer__bottom">
+                <ul class="fr-footer__bottom-list">
+                    <li class="fr-footer__bottom-item">
+                        <a href="#" class="fr-footer__bottom-link">Plan du site</a>
+                    </li>
+                    <li class="fr-footer__bottom-item">
+                        <a href="#" class="fr-footer__bottom-link">Accessibilité : non conforme</a>
+                    </li>
+                    <li class="fr-footer__bottom-item">
+                        <a href="#" class="fr-footer__bottom-link">Mentions légales</a>
+                    </li>
+                    <li class="fr-footer__bottom-item">
+                        <a href="#" class="fr-footer__bottom-link">Données personnelles</a>
+                    </li>
+                    <li class="fr-footer__bottom-item">
+                        <a href="#" class="fr-footer__bottom-link">Gestion des cookies</a>
+                    </li>
+                </ul>
+                <div class="fr-footer__bottom-copy">
+                    <p>Site réalisé avec le Système de Design de l'État (DSFR).</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
