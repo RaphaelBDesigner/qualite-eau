@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Prototype IA — Qualité de l'eau",
   "main": "index.js",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "vite",
