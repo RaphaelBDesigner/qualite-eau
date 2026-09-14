@@ -351,24 +351,39 @@
             </div>
         </div>
 
-        <!-- Foire aux questions — rangées statiques (pas de fr-accordion pour l'instant, même remarque
-             que ci-dessus). -->
+        <!-- Foire aux questions — fr-accordion (structure copiée de
+             node_modules/@gouvfr/dsfr/example/component/accordion/index.html, « Groupe d'accordéons ») :
+             le DSFR gère nativement l'ouverture/fermeture et la rotation du chevron (bascule
+             d'aria-expanded par le bouton, cf. core.css .fr-accordion__btn[aria-expanded=true]:after
+             {transform:rotate(-180deg)}), aucun JS custom nécessaire. -->
         <div class="fr-container fr-pt-4w fr-mb-6w">
             <h2>Foire aux questions</h2>
-            <ul class="fr-raw-list fr-mb-4w">
-                <li class="site-list-row">
-                    <span>Qui contrôle la qualité de l'eau en France ?</span>
-                    <span class="fr-icon-arrow-down-s-line" aria-hidden="true"></span>
-                </li>
-                <li class="site-list-row">
-                    <span>Comment vérifier si je suis raccordé(e) au réseau public ?</span>
-                    <span class="fr-icon-arrow-down-s-line" aria-hidden="true"></span>
-                </li>
-                <li class="site-list-row">
-                    <span>À quelle fréquence les données sont-elles mises à jour ?</span>
-                    <span class="fr-icon-arrow-down-s-line" aria-hidden="true"></span>
-                </li>
-            </ul>
+            <div class="fr-accordions-group fr-mb-4w">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button type="button" class="fr-accordion__btn" aria-expanded="false" aria-controls="faq-controle-qualite">Qui contrôle la qualité de l'eau en France ?</button>
+                    </h3>
+                    <div class="fr-collapse" id="faq-controle-qualite">
+                        <p>Les Agences Régionales de Santé (ARS) réalisent le contrôle sanitaire réglementaire, en complément de la surveillance permanente assurée par l'exploitant du réseau (commune, régie ou opérateur privé), conformément au Code de la santé publique et à la réglementation européenne.</p>
+                    </div>
+                </section>
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button type="button" class="fr-accordion__btn" aria-expanded="false" aria-controls="faq-raccordement-reseau">Comment vérifier si je suis raccordé(e) au réseau public ?</button>
+                    </h3>
+                    <div class="fr-collapse" id="faq-raccordement-reseau">
+                        <p>L'information figure sur votre facture d'eau (nom de l'exploitant et du réseau de distribution). Vous pouvez aussi contacter votre mairie ou le service des eaux de votre commune, ou faire une recherche par adresse sur ce site.</p>
+                    </div>
+                </section>
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button type="button" class="fr-accordion__btn" aria-expanded="false" aria-controls="faq-frequence-donnees">À quelle fréquence les données sont-elles mises à jour ?</button>
+                    </h3>
+                    <div class="fr-collapse" id="faq-frequence-donnees">
+                        <p>Les résultats sont mis à jour mensuellement (avec un délai d'environ un mois après les prélèvements), au rythme de publication du Ministère de la Santé et de la base nationale SISE-Eaux.</p>
+                    </div>
+                </section>
+            </div>
             <p class="site-text-center">
                 <a href="#" class="fr-link fr-icon-arrow-right-line fr-link--icon-right">Voir toutes les questions</a>
             </p>
