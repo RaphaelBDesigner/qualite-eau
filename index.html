@@ -174,12 +174,17 @@
              provisoire (textes + placeholder DSFR en image), en attente du contenu réel.
              Padding/gap (site-content-section) et cartes articles (site-article-card) : valeurs
              exactes de la maquette Figma (mode Inspect), cf. commentaire dans src/style.css.
-             Les 3 transitions majeures entre sections (recherche → contenu pédagogique, cartes →
-             grands sujets, grands sujets → FAQ) sont harmonisées à 48px (fr-mb-2w du conteneur
-             recherche + padding-top 32px de site-content-section ; padding-bottom 32px de
-             site-content-section + fr-pt-2w des grands sujets ; fr-pb-6w des grands sujets seul) —
-             comparaison visuelle avec la maquette, mesurées et ajustées sur l'échelle DSFR (8/16/24/
-             32/48px) plutôt qu'à l'estimation, cf. valeurs avant/après dans le message de réponse. -->
+             Transitions entre sections, harmonisées sur l'échelle DSFR (8/16/24/32/48px) à partir
+             de mesures réelles plutôt que d'estimations :
+             - recherche → contenu pédagogique : 48px (fr-mb-2w du conteneur recherche, 16px, +
+               padding-top 32px de site-content-section).
+             - cartes « Pour aller plus loin » → « Les grands sujets » : 48px (padding-bottom 32px
+               de site-content-section + fr-pt-2w des grands sujets, 16px).
+             - dernier item « Les grands sujets » → bas du fond teinté : 32px (fr-pb-4w du
+               conteneur grands sujets), DISTINCT du gap suivant.
+             - bas du fond teinté → titre « Foire aux questions » : 32px (fr-pt-4w du conteneur
+               FAQ), en dehors du fond teinté — deux espaces de 32px l'un après l'autre, pas un
+               seul de 32px total. -->
         <div class="site-section--tinted">
             <div class="fr-container site-content-section">
                 <h2>Contenu pédagogique</h2>
@@ -289,7 +294,7 @@
                     </div>
                 </div>
             </div>
-            <div class="fr-container fr-pt-2w fr-pb-6w">
+            <div class="fr-container fr-pt-2w fr-pb-4w">
                 <h2>Les grands sujets</h2>
                 <ul class="fr-raw-list" data-content-panel="potable">
                     <li class="site-list-row">
@@ -332,7 +337,7 @@
 
         <!-- Foire aux questions — rangées statiques (pas de fr-accordion pour l'instant, même remarque
              que ci-dessus). -->
-        <div class="fr-container fr-mb-6w">
+        <div class="fr-container fr-pt-4w fr-mb-6w">
             <h2>Foire aux questions</h2>
             <ul class="fr-raw-list fr-mb-4w">
                 <li class="site-list-row">
