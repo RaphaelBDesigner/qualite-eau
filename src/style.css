@@ -161,6 +161,17 @@ button.fr-tag[aria-pressed="true"]::after {
   flex: 1;
 }
 
+/* Icône + libellé centrés dans chaque segment (maquette). Le label du DSFR
+   (.fr-segmented input~label, cf. component/segmented/segmented.css) est
+   display:inline-flex;align-items:center mais sans justify-content ni gap
+   explicites : par défaut le contenu (icône ::before + texte) colle à
+   gauche. gap:0.5rem (8px, échelle DSFR) garantit un espacement icône/texte
+   cohérent quel que soit le segment. */
+.site-search-card .fr-segmented__element label {
+  justify-content: center;
+  gap: 0.5rem;
+}
+
 .site-content-section {
   display: flex;
   flex-direction: column;
