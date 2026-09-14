@@ -26,3 +26,23 @@
 .site-section--tinted {
   background-color: var(--background-alt-blue-france);
 }
+
+/* Icône « Baignade » du contrôle segmenté (fourni par l'équipe design,
+   src/assets/pool.svg — ne fait pas partie de la bibliothèque fr-icon-*
+   du DSFR). Reprend exactement le mécanisme des icônes DSFR (masque CSS
+   + currentColor, cf. [class^=fr-icon-]::before dans dist/core/core.css)
+   pour un rendu identique à fr-icon-drop-line utilisé pour « Eau potable » :
+   même taille, et couleur qui suit l'état sélectionné du label. */
+.site-icon-pool::before {
+  content: "";
+  display: inline-block;
+  vertical-align: calc((0.75em - var(--icon-size)) * 0.5);
+  background-color: currentColor;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  -webkit-mask-image: url("./assets/pool.svg");
+  mask-image: url("./assets/pool.svg");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  --icon-size: 1.5rem;
+}
