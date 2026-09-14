@@ -52,7 +52,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1rem 0;
+  padding: 1rem;
   border-bottom: 1px solid var(--border-default-grey);
   color: var(--text-action-high-blue-france);
   font-size: 1.125rem;
