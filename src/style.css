@@ -28,8 +28,27 @@
   color: var(--text-action-high-blue-france);
 }
 
-.site-list-row:first-child {
+/* .site-list-row:first-child couvre la FAQ (classe posée directement sur le
+   <li>) ; li:first-child > .site-list-row couvre « Les grands sujets », où la
+   classe est posée sur le <button> déclencheur de fiche à l'intérieur du <li>
+   (le <button> y est toujours seul enfant, donc toujours lui-même
+   :first-child : c'est le <li> parent qu'il faut tester à la place). */
+.site-list-row:first-child,
+li:first-child > .site-list-row {
   border-top: 1px solid var(--border-default-grey);
+}
+
+/* « Les grands sujets » : chaque rangée est un bouton pleine largeur ouvrant
+   la fiche du sujet (fr-modal, cf. index.html) plutôt qu'un <li> statique -
+   on retire l'habillage par défaut du <button> pour retrouver exactement le
+   rendu de .site-list-row (display:flex hérité de la classe commune). */
+button.site-list-row {
+  background: none;
+  border: none;
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
 /* Fond légèrement teinté (maquette Figma) pour certaines sections.
@@ -210,4 +229,50 @@ button.fr-tag[aria-pressed="true"]::after {
 
 .site-article-card .fr-card__content > * {
   margin: 0;
+}
+
+/* Fiches « Les grands sujets » en bottom sheet (maquette). Le <dialog
+   class="fr-modal"> est géré par le DSFR (ouverture/fermeture, focus,
+   Échap, clic sur le fond, cf. core.js) : on ne touche à aucun mécanisme,
+   seulement à l'habillage visuel du panneau une fois ouvert.
+   .fr-modal (cf. dist/core/core.css) est déjà un conteneur plein écran en
+   position:fixed;display:flex;flex-direction:column — par défaut son
+   unique enfant (.fr-container) est centré verticalement par le DSFR au-delà
+   de sm. On force l'ancrage en bas à toutes les tailles (justify-content:
+   flex-end) pour obtenir un vrai bottom sheet plutôt qu'une modale centrée. */
+.site-modal--sheet {
+  justify-content: flex-end;
+}
+
+/* .fr-modal__body porte le fond blanc + l'ombre du DSFR par défaut (bord
+   carré) : coins arrondis uniquement en haut (ancrée au bord bas de l'écran,
+   comme un vrai bottom sheet) et ombre portée vers le haut plutôt que
+   l'ombre neutre du DSFR. */
+.site-modal--sheet .fr-modal__body {
+  border-radius: 1rem 1rem 0 0;
+  box-shadow: 0 -4px 16px 0 rgba(0, 0, 18, 0.16);
+}
+
+/* Encart « Bon à savoir » des fiches : mêmes tokens DSFR que le fond des tags
+   inactifs de « Contenu pédagogique » (background-action-low-blue-france,
+   text-action-high-blue-france) pour rester cohérent avec le reste du site,
+   plus une bordure gauche pleine dans le bleu France par défaut du DSFR
+   (border-default-blue-france, déjà utilisé par fr-callout pour le même
+   effet de liseré coloré). */
+.site-modal__callout {
+  background-color: var(--background-action-low-blue-france);
+  border-left: 4px solid var(--border-default-blue-france);
+  border-radius: 0 4px 4px 0;
+  padding: 1rem 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.site-modal__callout-title {
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.site-modal__callout p {
+  margin: 0;
+  color: var(--text-action-high-blue-france);
 }
