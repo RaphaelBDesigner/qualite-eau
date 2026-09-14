@@ -24,6 +24,21 @@
   margin-bottom: 0;
 }
 
+/* Le DSFR ne réserve un padding horizontal sur .fr-collapse (le contenu
+   déplié) qu'à partir du breakpoint md (>=48em, cf. component/accordion/
+   accordion.css, commentaire « media md » : .fr-accordion .fr-collapse
+   avec padding-left/right:1rem). En dessous, seul le bouton d'en-tête
+   (.fr-accordion__btn, padding:.75rem 1rem) a un padding horizontal : le
+   texte de réponse touche donc les bords sur mobile par défaut. Le site
+   étant mobile-first et la maquette attendant le même padding que le
+   header dès le mobile, on applique ici la même valeur (1rem) que le DSFR
+   utilise nativement à partir de md, à toutes les tailles — pas une
+   valeur inventée, juste la même appliquée plus tôt. */
+.fr-accordion .fr-collapse {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 /* Rangées statiques (« Les grands sujets », FAQ) en attendant leur
    conversion en fr-accordion dans un second temps. Couleur bleue identique
    à celle des titres de carte cliquables (« Écosystème de distribution »...) :
