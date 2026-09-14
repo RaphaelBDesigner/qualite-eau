@@ -10,7 +10,15 @@ const contentFilterButtons = document.querySelectorAll('[data-content-filter]')
 const contentPanels = document.querySelectorAll('[data-content-panel]')
 
 contentFilterButtons.forEach((button) => {
-  button.addEventListener('click', () => {
+  button.addEventListener('click', (event) => {
+    // Le DSFR instancie automatiquement un comportement "Toggle" générique sur
+    // tout .fr-tag[aria-pressed] (cf. dsfr.module.js, TagSelector.PRESSABLE) qui
+    // inverse aveuglément l'attribut au clic, sans notion de groupe. Ce
+    // comportement est enregistré sur le même bouton et se déclenche après ce
+    // gestionnaire : sans stopImmediatePropagation, il repasse le tag qu'on
+    // vient d'activer à aria-pressed="false" juste après notre mise à jour.
+    event.stopImmediatePropagation()
+
     const filter = button.dataset.contentFilter
 
     contentFilterButtons.forEach((b) => {

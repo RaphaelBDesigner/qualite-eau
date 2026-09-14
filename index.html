@@ -168,10 +168,10 @@
              sujets » (script dans src/main.js). L'état visuel des tags (fond bleu foncé/texte blanc
              actif, bleu clair/texte bleu foncé inactif) surcharge le rendu par défaut du DSFR pour
              le tag sélectionné — voir le commentaire dans src/style.css.
-             Illustrations « eau potable » fournies par l'équipe design (public/img/ecosysteme-
-             distribution.svg et public/img/controle-sanitaire.svg — plusieurs Mo chacune, cf. remarque
-             de performance transmise séparément). Cartes et sujets « eaux de baignade » : contenu
-             provisoire (textes + placeholder DSFR en image), en attente du contenu réel.
+             Illustrations fournies par l'équipe design : public/img/ecosysteme-distribution.svg,
+             controle-sanitaire.svg (eau potable), classement-eaux-baignade.svg,
+             surveillance-baignade.svg (eaux de baignade) — plusieurs Mo chacune, cf. remarque de
+             performance transmise séparément.
              Padding/gap (site-content-section) et cartes articles (site-article-card) : valeurs
              exactes de la maquette Figma (mode Inspect), cf. commentaire dans src/style.css.
              Transitions entre sections, harmonisées sur l'échelle DSFR (8/16/24/32/48px) à partir
@@ -252,18 +252,18 @@
                                 <div class="fr-card__body">
                                     <div class="fr-card__content">
                                         <h3 class="fr-card__title">
-                                            <a href="#">Zones de baignade surveillées</a>
+                                            <a href="#">Comprendre le classement des eaux</a>
                                         </h3>
-                                        <p class="fr-card__desc">Retrouvez la liste des sites de baignade contrôlés par l'ARS (mer, rivière, lac) et les résultats de leurs derniers prélèvements.</p>
+                                        <p class="fr-card__desc">Excellente, bonne, suffisante, insuffisante : ce classement résume quatre ans d'analyses d'un site. Apprenez à lire ces catégories, à repérer les alertes cyanobactéries et quand un site est déconseillé.</p>
                                     </div>
                                 </div>
                                 <div class="fr-card__header">
                                     <div class="fr-card__img">
-                                        <img class="fr-responsive-img" src="%BASE_URL%img/placeholder.16x9.png" alt="" />
+                                        <img class="fr-responsive-img" src="%BASE_URL%img/classement-eaux-baignade.svg" alt="" />
                                     </div>
                                     <ul class="fr-badges-group">
                                         <li>
-                                            <p class="fr-badge fr-badge--pink-tuile fr-badge--no-icon">Zones de baignade</p>
+                                            <p class="fr-badge fr-badge--pink-tuile fr-badge--no-icon">Classement</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -274,18 +274,18 @@
                                 <div class="fr-card__body">
                                     <div class="fr-card__content">
                                         <h3 class="fr-card__title">
-                                            <a href="#">Qualité microbiologique</a>
+                                            <a href="#">Surveillance de l'eau de baignade</a>
                                         </h3>
-                                        <p class="fr-card__desc">Comprenez les indicateurs recherchés (bactéries, cyanobactéries) et les seuils qui définissent une eau propre à la baignade.</p>
+                                        <p class="fr-card__desc">Avant chaque saison, l'ARS analyse l'eau des sites de baignade toutes les deux semaines. Bactéries, météo, apports des rivières : découvrez ce qui est mesuré et pourquoi la qualité peut varier d'un jour à l'autre.</p>
                                     </div>
                                 </div>
                                 <div class="fr-card__header">
                                     <div class="fr-card__img">
-                                        <img class="fr-responsive-img" src="%BASE_URL%img/placeholder.16x9.png" alt="" />
+                                        <img class="fr-responsive-img" src="%BASE_URL%img/surveillance-baignade.svg" alt="" />
                                     </div>
                                     <ul class="fr-badges-group">
                                         <li>
-                                            <p class="fr-badge fr-badge--pink-tuile fr-badge--no-icon">Qualité microbiologique</p>
+                                            <p class="fr-badge fr-badge--pink-tuile fr-badge--no-icon">Contrôle sanitaire</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -320,15 +320,15 @@
                         <span class="fr-icon-add-line" aria-hidden="true"></span>
                     </li>
                     <li class="site-list-row">
-                        <span>Algues et proliférations</span>
+                        <span>Bactéries fécales</span>
                         <span class="fr-icon-add-line" aria-hidden="true"></span>
                     </li>
                     <li class="site-list-row">
-                        <span>Zones interdites à la baignade</span>
+                        <span>Pollution après la pluie</span>
                         <span class="fr-icon-add-line" aria-hidden="true"></span>
                     </li>
                     <li class="site-list-row">
-                        <span>Pollution accidentelle</span>
+                        <span>Algues vertes</span>
                         <span class="fr-icon-add-line" aria-hidden="true"></span>
                     </li>
                 </ul>
