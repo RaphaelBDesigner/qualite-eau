@@ -24,6 +24,21 @@
   margin-bottom: 0;
 }
 
+/* Le DSFR ne réserve un padding horizontal sur .fr-collapse (le contenu
+   déplié) qu'à partir du breakpoint md (>=48em, cf. component/accordion/
+   accordion.css, commentaire « media md » : .fr-accordion .fr-collapse
+   avec padding-left/right:1rem). En dessous, seul le bouton d'en-tête
+   (.fr-accordion__btn, padding:.75rem 1rem) a un padding horizontal : le
+   texte de réponse touche donc les bords sur mobile par défaut. Le site
+   étant mobile-first et la maquette attendant le même padding que le
+   header dès le mobile, on applique ici la même valeur (1rem) que le DSFR
+   utilise nativement à partir de md, à toutes les tailles — pas une
+   valeur inventée, juste la même appliquée plus tôt. */
+.fr-accordion .fr-collapse {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 /* Rangées statiques (« Les grands sujets », FAQ) en attendant leur
    conversion en fr-accordion dans un second temps. Couleur bleue identique
    à celle des titres de carte cliquables (« Écosystème de distribution »...) :
@@ -40,6 +55,18 @@
   padding: 1rem 0;
   border-bottom: 1px solid var(--border-default-grey);
   color: var(--text-action-high-blue-france);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+/* Survol d'un item « Les grands sujets » (maquette Figma) : même token que
+   le fond des tags inactifs / de l'encart « Bon à savoir » / du header
+   ouvert de la FAQ (background-action-low-blue-france = #e3e3fd), pour
+   rester cohérent avec le reste du site plutôt que le gris de survol
+   générique du DSFR (button:hover{background-color:var(--hover)}, non
+   défini pour ce bouton sans classe fr-btn, donc gris par défaut). */
+button.site-list-row:hover {
+  background-color: var(--background-action-low-blue-france);
 }
 
 /* .site-list-row:first-child couvre la FAQ (classe posée directement sur le
@@ -55,12 +82,18 @@ li:first-child > .site-list-row {
 /* « Les grands sujets » : chaque rangée est un bouton pleine largeur ouvrant
    la fiche du sujet (fr-modal, cf. index.html) plutôt qu'un <li> statique -
    on retire l'habillage par défaut du <button> pour retrouver exactement le
-   rendu de .site-list-row (display:flex hérité de la classe commune). */
+   rendu de .site-list-row (display:flex hérité de la classe commune).
+   font-family: inherit seul (pas le raccourci font: inherit) : ce dernier
+   réinitialiserait aussi font-size/font-weight hérités du bouton natif,
+   écrasant les valeurs Figma (18px/700) définies sur .site-list-row plus
+   haut — .site-list-row (une classe) a une spécificité plus faible que
+   button.site-list-row (élément + classe) et perdrait sinon la bataille de
+   cascade. */
 button.site-list-row {
   background: none;
   border: none;
   width: 100%;
-  font: inherit;
+  font-family: inherit;
   text-align: left;
   cursor: pointer;
 }
