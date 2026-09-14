@@ -83,7 +83,7 @@
 
     <main id="content" role="main">
         <div class="site-section--tinted">
-            <div class="fr-container fr-pt-6w fr-pb-4w">
+            <div class="fr-container fr-pt-6w fr-pb-3w">
                 <h1>Résultats du contrôle sanitaire des eaux</h1>
                 <p class="fr-text--lead">Accédez aux résultats officiels pour l'<strong>eau potable</strong> et les <strong>eaux de baignade</strong> des lacs, rivières et plages, en France métropolitaine et dans les outre-mer.</p>
             </div>
@@ -118,7 +118,7 @@
              Padding/gap/ombre (site-search-card) : valeurs exactes fournies par la maquette Figma
              (mode Inspect), cf. commentaire dans src/style.css. Largeur de la carte laissée fluide
              (100% du conteneur), pas de largeur figée en pixels. -->
-        <div class="fr-container fr-mb-6w">
+        <div class="fr-container fr-mb-2w">
             <div class="fr-card fr-card--shadow site-search-card">
                 <div class="fr-card__body">
                     <div class="fr-card__content">
@@ -169,7 +169,13 @@
              de performance transmise séparément). Cartes et sujets « eaux de baignade » : contenu
              provisoire (textes + placeholder DSFR en image), en attente du contenu réel.
              Padding/gap (site-content-section) et cartes articles (site-article-card) : valeurs
-             exactes de la maquette Figma (mode Inspect), cf. commentaire dans src/style.css. -->
+             exactes de la maquette Figma (mode Inspect), cf. commentaire dans src/style.css.
+             Les 3 transitions majeures entre sections (recherche → contenu pédagogique, cartes →
+             grands sujets, grands sujets → FAQ) sont harmonisées à 48px (fr-mb-2w du conteneur
+             recherche + padding-top 32px de site-content-section ; padding-bottom 32px de
+             site-content-section + fr-pt-2w des grands sujets ; fr-pb-6w des grands sujets seul) —
+             comparaison visuelle avec la maquette, mesurées et ajustées sur l'échelle DSFR (8/16/24/
+             32/48px) plutôt qu'à l'estimation, cf. valeurs avant/après dans le message de réponse. -->
         <div class="site-section--tinted">
             <div class="fr-container site-content-section">
                 <h2>Contenu pédagogique</h2>
@@ -279,7 +285,7 @@
                     </div>
                 </div>
             </div>
-            <div class="fr-container fr-py-6w">
+            <div class="fr-container fr-pt-2w fr-pb-6w">
                 <h2>Les grands sujets</h2>
                 <ul class="fr-raw-list" data-content-panel="potable">
                     <li class="site-list-row">

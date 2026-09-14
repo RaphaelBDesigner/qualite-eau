@@ -3,7 +3,13 @@
    queries ajoutent des ajustements pour les écrans plus larges. */
 
 /* Rangées statiques (« Les grands sujets », FAQ) en attendant leur
-   conversion en fr-accordion dans un second temps. */
+   conversion en fr-accordion dans un second temps. Couleur bleue identique
+   à celle des titres de carte cliquables (« Écosystème de distribution »...) :
+   c'est la couleur de lien par défaut du DSFR (règle a{color:var(--text-
+   action-high-blue-france)} dans core.css), appliquée ici explicitement
+   puisque ce sont des <span>, pas des liens. currentColor sur les icônes
+   (::before, cf. règle générique [class^=fr-icon-] dans core.css) les fait
+   suivre automatiquement la même couleur. */
 .site-list-row {
   display: flex;
   align-items: center;
@@ -11,6 +17,7 @@
   gap: 1rem;
   padding: 1rem 0;
   border-bottom: 1px solid var(--border-default-grey);
+  color: var(--text-action-high-blue-france);
 }
 
 .site-list-row:first-child {
