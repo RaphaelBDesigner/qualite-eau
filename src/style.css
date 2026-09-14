@@ -51,21 +51,25 @@
    L'état inactif ([aria-pressed=false]) est déjà bleu clair/texte bleu foncé par
    défaut dans le DSFR (cf. component/tag/tag.css) et correspond à la maquette :
    pas de surcharge nécessaire. L'état actif par défaut du DSFR est en revanche un
-   simple badge en coin sur fond transparent, alors que la maquette attend un
-   remplissage plein bleu foncé avec texte blanc — on surcharge donc avec les
-   tokens DSFR déjà utilisés ailleurs pour ce même rendu (fr-tag--dismiss, cf.
-   tag.css) et on retire le badge en coin (::after) qui n'a pas lieu d'être ici. */
-button.fr-tag[aria-pressed="true"] {
+   simple badge en coin sur fond transparent (découpé via background-image:
+   radial-gradient), alors que la maquette attend un remplissage plein bleu foncé
+   avec texte blanc — on surcharge donc avec les tokens DSFR déjà utilisés ailleurs
+   pour ce même rendu (fr-tag--dismiss, cf. tag.css) et on retire le badge en coin
+   (::after). Le sélecteur reprend le :not(:disabled) du DSFR (component/tag/tag.css,
+   règle button.fr-tag[aria-pressed=true]:not(:disabled)) : sans lui, notre règle a
+   une spécificité inférieure à celle du DSFR et perd la bataille de cascade — le
+   radial-gradient restait visible et rognait le coin haut-droit du tag actif. */
+button.fr-tag[aria-pressed="true"]:not(:disabled) {
   background-color: var(--background-action-high-blue-france);
   background-image: none;
   color: var(--text-inverted-blue-france);
 }
 
-button.fr-tag[aria-pressed="true"]:hover {
+button.fr-tag[aria-pressed="true"]:not(:disabled):hover {
   background-color: var(--background-action-high-blue-france-hover);
 }
 
-button.fr-tag[aria-pressed="true"]:active {
+button.fr-tag[aria-pressed="true"]:not(:disabled):active {
   background-color: var(--background-action-high-blue-france-active);
 }
 
