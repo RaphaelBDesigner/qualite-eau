@@ -58,3 +58,19 @@ searchTypeInputs.forEach((input) => {
     searchInput.placeholder = text.placeholder
   })
 })
+
+// Fiabilise la fermeture des accordéons FAQ (fr-accordion) : sur certains
+// navigateurs/plateformes (ex. Safari/macOS), un clic sur un <button> ne lui
+// donne pas nativement le focus, contrairement à Chrome/Firefox. Le DSFR
+// restaure le focus à la fermeture via son propre gestionnaire interne
+// (FocusManager, cf. dsfr.module.js), basé sur l'historique des événements
+// focusin de la page. Sans focus explicite à l'ouverture, cet historique ne
+// contient pas le bouton cliqué ; le DSFR retombe alors sur le lien du logo
+// du header comme destination de focus par défaut (focusOnLogo), tout en
+// haut de page, ce qui fait sauter le scroll à cet endroit à la fermeture.
+// mousedown (avant click) garantit un focus natif cohérent quel que soit le
+// navigateur, sans toucher au mécanisme d'ouverture/fermeture du DSFR
+// lui-même (aucun preventDefault, aucun <a href> impliqué).
+document.querySelectorAll('.fr-accordion__btn').forEach((button) => {
+  button.addEventListener('mousedown', () => button.focus())
+})
