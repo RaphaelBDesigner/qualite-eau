@@ -143,6 +143,24 @@ button.fr-tag[aria-pressed="true"]::after {
   align-self: stretch;
 }
 
+/* Contrôle segmenté : la maquette demande explicitement 2 segments de
+   largeur égale (50/50) occupant toute la largeur de la carte bord à bord,
+   pas la largeur au contenu par défaut du DSFR. Le DSFR bascule déjà
+   .fr-segmented en display:block sur mobile (légende empilée au-dessus des
+   segments, à ne pas casser) ; on ne touche donc pas au fieldset lui-même.
+   .fr-segmented__elements (display:flex;flex-direction:row par défaut) est
+   un <div> block-level, déjà pleine largeur de son parent par défaut — le
+   width:100% ici est une garantie explicite plutôt qu'une nécessité. Le
+   vrai changement est flex:1 sur chaque segment : par défaut le DSFR les
+   laisse flex:0 1 auto (largeur au contenu), d'où le partage inégal. */
+.site-search-card .fr-segmented__elements {
+  width: 100%;
+}
+
+.site-search-card .fr-segmented__element {
+  flex: 1;
+}
+
 .site-content-section {
   display: flex;
   flex-direction: column;
