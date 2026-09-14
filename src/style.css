@@ -16,3 +16,13 @@
 .site-list-row:first-child {
   border-top: 1px solid var(--border-default-grey);
 }
+
+/* Fond légèrement teinté (maquette Figma) pour certaines sections.
+   #F5F5FE correspond au token DSFR --background-alt-blue-france
+   (bleu France, fond alternatif) ; utilisé via la variable plutôt que
+   la classe utilitaire fr-background-alt--blue-france pour éviter
+   d'importer le fichier utility.css complet (~450 Ko) pour une seule
+   couleur. */
+.site-section--tinted {
+  background-color: var(--background-alt-blue-france);
+}
