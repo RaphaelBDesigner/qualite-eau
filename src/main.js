@@ -21,3 +21,32 @@ contentFilterButtons.forEach((button) => {
     })
   })
 })
+
+// Switch « Rechercher un lieu » (fr-segmented eau potable / baignade) : met à
+// jour le libellé et le placeholder de la barre de recherche de ce bloc
+// uniquement. Indépendant du filtre de contenu ci-dessus (éléments et
+// événement distincts, "change" sur les radios plutôt que "click" sur des
+// boutons) : n'affecte pas la section « Contenu pédagogique ».
+const searchTypeInputs = document.querySelectorAll('input[name="segmented-type-eau"]')
+const searchLabel = document.getElementById('search-lieu-label')
+const searchInput = document.getElementById('search-lieu-input')
+
+const searchTypeText = {
+  potable: {
+    label: 'Rechercher une adresse ou une commune',
+    placeholder: 'Adresse, commune...',
+  },
+  baignade: {
+    label: 'Rechercher un lieu de baignade',
+    placeholder: 'Plage, lac, rivière, commune...',
+  },
+}
+
+searchTypeInputs.forEach((input) => {
+  input.addEventListener('change', () => {
+    const text = searchTypeText[input.value]
+    if (!text || !searchLabel || !searchInput) return
+    searchLabel.textContent = text.label
+    searchInput.placeholder = text.placeholder
+  })
+})
