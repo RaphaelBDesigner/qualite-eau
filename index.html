@@ -114,13 +114,16 @@
              (les deux utilisent min-height:2.5rem), vérifié par mesure — aucune surcharge requise.
              fr-search-bar--labelled ajouté : sans ce modificateur, le DSFR masque visuellement le
              label de la barre de recherche (accessible seulement aux lecteurs d'écran) — cf.
-             .fr-search-bar:not(.fr-search-bar--labelled) .fr-label dans component/search/search.css. -->
+             .fr-search-bar:not(.fr-search-bar--labelled) .fr-label dans component/search/search.css.
+             Padding/gap/ombre (site-search-card) : valeurs exactes fournies par la maquette Figma
+             (mode Inspect), cf. commentaire dans src/style.css. Largeur de la carte laissée fluide
+             (100% du conteneur), pas de largeur figée en pixels. -->
         <div class="fr-container fr-mb-6w">
-            <div class="fr-card fr-card--shadow">
+            <div class="fr-card fr-card--shadow site-search-card">
                 <div class="fr-card__body">
                     <div class="fr-card__content">
-                        <h2 class="fr-mb-3w">Rechercher un lieu</h2>
-                        <fieldset class="fr-segmented fr-mb-3w">
+                        <h2>Rechercher un lieu</h2>
+                        <fieldset class="fr-segmented">
                             <legend class="fr-segmented__legend">Choisissez le type d'eau</legend>
                             <div class="fr-segmented__elements">
                                 <div class="fr-segmented__element">
@@ -133,7 +136,7 @@
                                 </div>
                             </div>
                         </fieldset>
-                        <div class="fr-search-bar fr-search-bar--labelled fr-mb-3w" id="search-lieu" role="search">
+                        <div class="fr-search-bar fr-search-bar--labelled" id="search-lieu" role="search">
                             <label class="fr-label" for="search-lieu-input">
                                 Rechercher une adresse ou une commune
                             </label>
@@ -164,11 +167,13 @@
              Illustrations « eau potable » fournies par l'équipe design (public/img/ecosysteme-
              distribution.svg et public/img/controle-sanitaire.svg — plusieurs Mo chacune, cf. remarque
              de performance transmise séparément). Cartes et sujets « eaux de baignade » : contenu
-             provisoire (textes + placeholder DSFR en image), en attente du contenu réel. -->
+             provisoire (textes + placeholder DSFR en image), en attente du contenu réel.
+             Padding/gap (site-content-section) et cartes articles (site-article-card) : valeurs
+             exactes de la maquette Figma (mode Inspect), cf. commentaire dans src/style.css. -->
         <div class="site-section--tinted">
-            <div class="fr-container fr-py-6w">
+            <div class="fr-container site-content-section">
                 <h2>Contenu pédagogique</h2>
-                <ul class="fr-tags-group fr-mb-4w" role="group" aria-label="Filtrer par type d'eau">
+                <ul class="fr-tags-group" role="group" aria-label="Filtrer par type d'eau">
                     <li>
                         <button class="fr-tag" aria-pressed="true" type="button" data-content-filter="potable">eau potable</button>
                     </li>
@@ -180,7 +185,7 @@
                 <div data-content-panel="potable">
                     <div class="fr-grid-row fr-grid-row--gutters">
                         <div class="fr-col-12">
-                            <div class="fr-card fr-enlarge-link">
+                            <div class="fr-card fr-enlarge-link site-article-card">
                                 <div class="fr-card__body">
                                     <div class="fr-card__content">
                                         <h3 class="fr-card__title">
@@ -202,7 +207,7 @@
                             </div>
                         </div>
                         <div class="fr-col-12">
-                            <div class="fr-card fr-enlarge-link">
+                            <div class="fr-card fr-enlarge-link site-article-card">
                                 <div class="fr-card__body">
                                     <div class="fr-card__content">
                                         <h3 class="fr-card__title">
@@ -228,7 +233,7 @@
                 <div data-content-panel="baignade" hidden>
                     <div class="fr-grid-row fr-grid-row--gutters">
                         <div class="fr-col-12">
-                            <div class="fr-card fr-enlarge-link">
+                            <div class="fr-card fr-enlarge-link site-article-card">
                                 <div class="fr-card__body">
                                     <div class="fr-card__content">
                                         <h3 class="fr-card__title">
@@ -250,7 +255,7 @@
                             </div>
                         </div>
                         <div class="fr-col-12">
-                            <div class="fr-card fr-enlarge-link">
+                            <div class="fr-card fr-enlarge-link site-article-card">
                                 <div class="fr-card__body">
                                     <div class="fr-card__content">
                                         <h3 class="fr-card__title">
