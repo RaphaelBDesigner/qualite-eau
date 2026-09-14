@@ -82,10 +82,14 @@
     </header>
 
     <main id="content" role="main">
+        <!-- Pas de fr-text--lead sur le paragraphe d'intro : cette classe force
+             font-size:1.25rem (20px) en !important dans le DSFR (core.css), ce qui
+             ne correspond pas aux 16px demandés par la maquette. Un <p> nu hérite
+             directement du font-size:1rem (16px) par défaut du DSFR sur body. -->
         <div class="site-section--tinted">
             <div class="fr-container fr-pt-6w fr-pb-3w">
                 <h1>Résultats du contrôle sanitaire des eaux</h1>
-                <p class="fr-text--lead">Accédez aux résultats officiels pour l'<strong>eau potable</strong> et les <strong>eaux de baignade</strong> des lacs, rivières et plages, en France métropolitaine et dans les outre-mer.</p>
+                <p>Accédez aux résultats officiels pour l'<strong>eau potable</strong> et les <strong>eaux de baignade</strong> des lacs, rivières et plages, en France métropolitaine et dans les outre-mer.</p>
             </div>
         </div>
 
@@ -344,7 +348,7 @@
                     <span class="fr-icon-arrow-down-s-line" aria-hidden="true"></span>
                 </li>
             </ul>
-            <p>
+            <p class="site-text-center">
                 <a href="#" class="fr-link fr-icon-arrow-right-line fr-link--icon-right">Voir toutes les questions</a>
             </p>
         </div>

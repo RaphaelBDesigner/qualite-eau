@@ -2,6 +2,14 @@
    règles ci-dessous s'appliquent par défaut aux petits écrans, les media
    queries ajoutent des ajustements pour les écrans plus larges. */
 
+/* Pas de classe utilitaire fr-text--center dans le bundle chargé (elle vit
+   dans utility.css, non importé — cf. commentaire sur .site-section--tinted
+   plus bas pour la même raison). Utilisé pour centrer « Voir toutes les
+   questions », conformément à la maquette. */
+.site-text-center {
+  text-align: center;
+}
+
 /* Rangées statiques (« Les grands sujets », FAQ) en attendant leur
    conversion en fr-accordion dans un second temps. Couleur bleue identique
    à celle des titres de carte cliquables (« Écosystème de distribution »...) :
@@ -155,16 +163,18 @@ button.fr-tag[aria-pressed="true"]::after {
    plutôt que .site-article-card seul : le DSFR réserve padding-bottom:5rem sur
    .fr-card.fr-enlarge-link:not(.fr-card--no-icon) .fr-card__content pour la
    flèche positionnée en absolu (bottom:2rem;right:2rem, cf. card.css) — cette
-   règle a une spécificité de 4 classes et écrasait notre padding-bottom:24px.
-   Même spécificité ici (4 classes), et notre feuille est chargée après celle
-   du DSFR : notre valeur l'emporte sur les 4 côtés, comme demandé par la
-   maquette. La flèche garde son positionnement absolu par défaut du DSFR. */
+   règle a une spécificité de 4 classes, il faut l'égaler pour la surcharger.
+   padding-bottom volontairement différent des 3 autres côtés (24px) : la
+   flèche reste positionnée en absolu par le DSFR (bottom:2rem=32px, hauteur
+   24px, donc occupe la zone 32-56px depuis le bas) ; un padding-bottom de
+   24px collait le texte contre la flèche. 64px laisse ~8px de respiration
+   nette entre la dernière ligne de texte et la flèche, sur l'échelle 8px. */
 .fr-card.fr-enlarge-link.site-article-card .fr-card__content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
-  padding: 24px;
+  padding: 24px 24px 64px;
   margin: 0;
   align-self: stretch;
 }
