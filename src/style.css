@@ -1,3 +1,18 @@
 /* Styles spécifiques au site, en complément du DSFR. Mobile-first : les
    règles ci-dessous s'appliquent par défaut aux petits écrans, les media
    queries ajoutent des ajustements pour les écrans plus larges. */
+
+/* Rangées statiques (« Les grands sujets », FAQ) en attendant leur
+   conversion en fr-accordion dans un second temps. */
+.site-list-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-default-grey);
+}
+
+.site-list-row:first-child {
+  border-top: 1px solid var(--border-default-grey);
+}

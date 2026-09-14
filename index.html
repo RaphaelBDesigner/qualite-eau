@@ -82,9 +82,157 @@
     </header>
 
     <main id="content" role="main">
-        <div class="fr-container fr-py-6w">
-            <h1>Qualité de l'eau</h1>
-            <p>Contenu à venir — en attente des maquettes Figma page par page.</p>
+        <div class="fr-container fr-pt-6w fr-pb-4w">
+            <h1>Résultats du contrôle sanitaire des eaux</h1>
+            <p class="fr-text--lead">Accédez aux résultats officiels pour l'eau potable et les eaux de baignade des lacs, rivières et plages, en France métropolitaine et dans les outre-mer.</p>
+        </div>
+
+        <!-- Rechercher un lieu — fr-callout copié de node_modules/@gouvfr/dsfr/example/component/callout/index.html,
+             fr-segmented (variante « avec icônes ») de .../component/segmented/index.html,
+             fr-search-bar de .../component/search/index.html,
+             fr-hr-or de node_modules/@gouvfr/dsfr/example/layout/page/login/1-default/index.html,
+             bouton secondaire icône à gauche de .../component/button/index.html.
+             Le contrôle segmenté reste fonctionnel nativement (non listé parmi les interactivités
+             différées) ; le filtrage réel par type d'eau et la recherche seront branchés ensuite. -->
+        <div class="fr-container fr-mb-6w">
+            <div class="fr-callout">
+                <h2 class="fr-callout__title">Rechercher un lieu</h2>
+                <fieldset class="fr-segmented fr-mb-3w">
+                    <legend class="fr-segmented__legend">Choisissez le type d'eau</legend>
+                    <div class="fr-segmented__elements">
+                        <div class="fr-segmented__element">
+                            <input value="potable" checked type="radio" id="segmented-type-eau-1" name="segmented-type-eau">
+                            <label class="fr-icon-drop-line fr-label" for="segmented-type-eau-1">Eau potable</label>
+                        </div>
+                        <div class="fr-segmented__element">
+                            <input value="baignade" type="radio" id="segmented-type-eau-2" name="segmented-type-eau">
+                            <label class="fr-icon-umbrella-line fr-label" for="segmented-type-eau-2">Baignade</label>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="fr-search-bar fr-mb-3w" id="search-lieu" role="search">
+                    <label class="fr-label" for="search-lieu-input">
+                        Rechercher une adresse ou une commune
+                    </label>
+                    <input class="fr-input" aria-describedby="search-lieu-input-messages" placeholder="Adresse, commune..." id="search-lieu-input" type="search">
+                    <div class="fr-messages-group" id="search-lieu-input-messages" aria-live="polite">
+                    </div>
+                    <button title="Rechercher" type="submit" id="search-lieu-btn" class="fr-btn">Rechercher</button>
+                </div>
+                <p class="fr-hr-or">ou</p>
+                <button type="button" class="fr-btn fr-icon-road-map-line fr-btn--icon-left fr-btn--secondary">Explorer sur la carte</button>
+            </div>
+        </div>
+
+        <!-- Contenu pédagogique — fr-tags-group (variante non cliquable) et fr-card (variante « avec
+             taxonomie dans le header ») copiés de .../component/tag/index.html et .../component/card/index.html.
+             Tags non cliquables pour l'instant : le filtrage par tag sera branché dans un second temps.
+             Images d'illustration : placeholder officiel du DSFR (example/img/placeholder.16x9.png),
+             à remplacer par les vraies illustrations. -->
+        <div class="fr-container fr-mb-6w">
+            <h2>Contenu pédagogique</h2>
+            <ul class="fr-tags-group fr-mb-4w">
+                <li>
+                    <p class="fr-tag">eau potable</p>
+                </li>
+                <li>
+                    <p class="fr-tag">eaux de baignade</p>
+                </li>
+            </ul>
+            <h3 class="fr-h6">Pour aller plus loin</h3>
+            <div class="fr-grid-row fr-grid-row--gutters">
+                <div class="fr-col-12">
+                    <div class="fr-card fr-enlarge-link">
+                        <div class="fr-card__body">
+                            <div class="fr-card__content">
+                                <h3 class="fr-card__title">
+                                    <a href="#">Écosystème de distribution</a>
+                                </h3>
+                                <p class="fr-card__desc">De la rivière ou de la nappe jusqu'à votre robinet, l'eau traverse stations de traitement, réservoirs et canalisations. Communes, régies et opérateurs privés : découvrez qui gère chaque étape du réseau.</p>
+                            </div>
+                        </div>
+                        <div class="fr-card__header">
+                            <div class="fr-card__img">
+                                <img class="fr-responsive-img" src="%BASE_URL%img/placeholder.16x9.png" alt="" />
+                            </div>
+                            <ul class="fr-badges-group">
+                                <li>
+                                    <p class="fr-badge fr-badge--pink-tuile fr-badge--no-icon">Réseau</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="fr-col-12">
+                    <div class="fr-card fr-enlarge-link">
+                        <div class="fr-card__body">
+                            <div class="fr-card__content">
+                                <h3 class="fr-card__title">
+                                    <a href="#">Contrôle sanitaire</a>
+                                </h3>
+                                <p class="fr-card__desc">Consultez les dernières informations concernant les contrôles, les recommandations et les actions mises en place pour assurer le respect des normes sanitaires.</p>
+                            </div>
+                        </div>
+                        <div class="fr-card__header">
+                            <div class="fr-card__img">
+                                <img class="fr-responsive-img" src="%BASE_URL%img/placeholder.16x9.png" alt="" />
+                            </div>
+                            <ul class="fr-badges-group">
+                                <li>
+                                    <p class="fr-badge fr-badge--pink-tuile fr-badge--no-icon">Contrôle sanitaire</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Les grands sujets — rangées statiques (pas de fr-accordion pour l'instant, conformément à la
+             consigne : l'interactivité accordéon sera branchée dans un second temps). -->
+        <div class="fr-container fr-mb-6w">
+            <h2>Les grands sujets</h2>
+            <ul class="fr-raw-list">
+                <li class="site-list-row">
+                    <span>Calcaire et dureté</span>
+                    <span class="fr-icon-add-line" aria-hidden="true"></span>
+                </li>
+                <li class="site-list-row">
+                    <span>PFAS</span>
+                    <span class="fr-icon-add-line" aria-hidden="true"></span>
+                </li>
+                <li class="site-list-row">
+                    <span>Pesticides</span>
+                    <span class="fr-icon-add-line" aria-hidden="true"></span>
+                </li>
+                <li class="site-list-row">
+                    <span>Plomb</span>
+                    <span class="fr-icon-add-line" aria-hidden="true"></span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Foire aux questions — rangées statiques (pas de fr-accordion pour l'instant, même remarque
+             que ci-dessus). -->
+        <div class="fr-container fr-mb-6w">
+            <h2>Foire aux questions</h2>
+            <ul class="fr-raw-list fr-mb-4w">
+                <li class="site-list-row">
+                    <span>Qui contrôle la qualité de l'eau en France ?</span>
+                    <span class="fr-icon-arrow-down-s-line" aria-hidden="true"></span>
+                </li>
+                <li class="site-list-row">
+                    <span>Comment vérifier si je suis raccordé(e) au réseau public ?</span>
+                    <span class="fr-icon-arrow-down-s-line" aria-hidden="true"></span>
+                </li>
+                <li class="site-list-row">
+                    <span>À quelle fréquence les données sont-elles mises à jour ?</span>
+                    <span class="fr-icon-arrow-down-s-line" aria-hidden="true"></span>
+                </li>
+            </ul>
+            <p>
+                <a href="#" class="fr-link fr-icon-arrow-right-line fr-link--icon-right">Voir toutes les questions</a>
+            </p>
         </div>
     </main>
 
