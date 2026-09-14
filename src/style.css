@@ -10,6 +10,20 @@
   text-align: center;
 }
 
+/* FAQ (fr-accordion) : neutralise la marge basse par défaut du <p> de
+   réponse. Sans ce reset, cette marge (typo DSFR, margin:0 0 1.5rem) et le
+   padding-bottom:1.5rem du DSFR sur .fr-collapse--expanded (cf. component/
+   accordion/accordion.css) s'additionnent au lieu de se superposer — la
+   marge d'un enfant ne traverse pas le padding de son parent, donc les deux
+   espacements s'empilent (24px + 24px = 48px) au lieu de respecter les 24px
+   prévus par le composant. Ce n'est pas une surcharge du padding du DSFR :
+   le padding du composant (header et .fr-collapse--expanded) n'est pas
+   touché, seule la marge de notre propre contenu (un <p> unique) est
+   retirée pour ne pas doubler l'espace déjà réservé par le composant. */
+.fr-accordion .fr-collapse > p:last-child {
+  margin-bottom: 0;
+}
+
 /* Rangées statiques (« Les grands sujets », FAQ) en attendant leur
    conversion en fr-accordion dans un second temps. Couleur bleue identique
    à celle des titres de carte cliquables (« Écosystème de distribution »...) :
@@ -28,8 +42,27 @@
   color: var(--text-action-high-blue-france);
 }
 
-.site-list-row:first-child {
+/* .site-list-row:first-child couvre la FAQ (classe posée directement sur le
+   <li>) ; li:first-child > .site-list-row couvre « Les grands sujets », où la
+   classe est posée sur le <button> déclencheur de fiche à l'intérieur du <li>
+   (le <button> y est toujours seul enfant, donc toujours lui-même
+   :first-child : c'est le <li> parent qu'il faut tester à la place). */
+.site-list-row:first-child,
+li:first-child > .site-list-row {
   border-top: 1px solid var(--border-default-grey);
+}
+
+/* « Les grands sujets » : chaque rangée est un bouton pleine largeur ouvrant
+   la fiche du sujet (fr-modal, cf. index.html) plutôt qu'un <li> statique -
+   on retire l'habillage par défaut du <button> pour retrouver exactement le
+   rendu de .site-list-row (display:flex hérité de la classe commune). */
+button.site-list-row {
+  background: none;
+  border: none;
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
 /* Fond légèrement teinté (maquette Figma) pour certaines sections.
@@ -209,5 +242,52 @@ button.fr-tag[aria-pressed="true"]::after {
 }
 
 .site-article-card .fr-card__content > * {
+  margin: 0;
+}
+
+/* Fiches « Les grands sujets » en bottom sheet (maquette). Le <dialog
+   class="fr-modal"> est géré par le DSFR (ouverture/fermeture, focus,
+   Échap, clic sur le fond, cf. core.js) : on ne touche à aucun mécanisme,
+   seulement à l'habillage visuel du panneau une fois ouvert.
+   .fr-modal (cf. dist/core/core.css) est déjà un conteneur plein écran en
+   position:fixed;display:flex;flex-direction:column — par défaut son
+   unique enfant (.fr-container) est centré verticalement par le DSFR au-delà
+   de sm. On force l'ancrage en bas à toutes les tailles (justify-content:
+   flex-end) pour obtenir un vrai bottom sheet plutôt qu'une modale centrée. */
+.site-modal--sheet {
+  justify-content: flex-end;
+}
+
+/* .fr-modal__body porte le fond blanc + l'ombre du DSFR par défaut (bord
+   carré) : coins arrondis uniquement en haut (ancrée au bord bas de l'écran,
+   comme un vrai bottom sheet) et ombre portée vers le haut plutôt que
+   l'ombre neutre du DSFR. */
+.site-modal--sheet .fr-modal__body {
+  border-radius: 1rem 1rem 0 0;
+  box-shadow: 0 -4px 16px 0 rgba(0, 0, 18, 0.16);
+}
+
+/* Encart « Bon à savoir » des fiches : seule la bordure gauche est dans le
+   bleu France par défaut du DSFR (border-default-blue-france, déjà utilisé
+   par fr-callout pour le même effet de liseré coloré) sur un fond bleu très
+   clair (background-action-low-blue-france, même token que le fond des tags
+   inactifs). Le titre et le texte restent en couleurs de texte DSFR standard
+   (grey), pas en bleu : seul le fond/la bordure marque l'encart. */
+.site-modal__callout {
+  background-color: var(--background-action-low-blue-france);
+  border-left: 4px solid var(--border-default-blue-france);
+  border-radius: 0 4px 4px 0;
+  padding: 1rem 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.site-modal__callout-title {
+  color: var(--text-title-grey);
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.site-modal__callout p:not(.site-modal__callout-title) {
+  color: var(--text-default-grey);
   margin: 0;
 }

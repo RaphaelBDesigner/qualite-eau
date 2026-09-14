@@ -141,7 +141,7 @@
                             </div>
                         </fieldset>
                         <div class="fr-search-bar fr-search-bar--labelled" id="search-lieu" role="search">
-                            <label class="fr-label" for="search-lieu-input">
+                            <label class="fr-label" for="search-lieu-input" id="search-lieu-label">
                                 Rechercher une adresse ou une commune
                             </label>
                             <input class="fr-input" aria-describedby="search-lieu-input-messages" placeholder="Adresse, commune..." id="search-lieu-input" type="search">
@@ -168,10 +168,10 @@
              sujets » (script dans src/main.js). L'état visuel des tags (fond bleu foncé/texte blanc
              actif, bleu clair/texte bleu foncé inactif) surcharge le rendu par défaut du DSFR pour
              le tag sélectionné — voir le commentaire dans src/style.css.
-             Illustrations « eau potable » fournies par l'équipe design (public/img/ecosysteme-
-             distribution.svg et public/img/controle-sanitaire.svg — plusieurs Mo chacune, cf. remarque
-             de performance transmise séparément). Cartes et sujets « eaux de baignade » : contenu
-             provisoire (textes + placeholder DSFR en image), en attente du contenu réel.
+             Illustrations fournies par l'équipe design : public/img/ecosysteme-distribution.svg,
+             controle-sanitaire.svg (eau potable), classement-eaux-baignade.svg,
+             surveillance-baignade.svg (eaux de baignade) — plusieurs Mo chacune, cf. remarque de
+             performance transmise séparément.
              Padding/gap (site-content-section) et cartes articles (site-article-card) : valeurs
              exactes de la maquette Figma (mode Inspect), cf. commentaire dans src/style.css.
              Transitions entre sections, harmonisées sur l'échelle DSFR (8/16/24/32/48px) à partir
@@ -252,18 +252,18 @@
                                 <div class="fr-card__body">
                                     <div class="fr-card__content">
                                         <h3 class="fr-card__title">
-                                            <a href="#">Zones de baignade surveillées</a>
+                                            <a href="#">Comprendre le classement des eaux</a>
                                         </h3>
-                                        <p class="fr-card__desc">Retrouvez la liste des sites de baignade contrôlés par l'ARS (mer, rivière, lac) et les résultats de leurs derniers prélèvements.</p>
+                                        <p class="fr-card__desc">Excellente, bonne, suffisante, insuffisante : ce classement résume quatre ans d'analyses d'un site. Apprenez à lire ces catégories, à repérer les alertes cyanobactéries et quand un site est déconseillé.</p>
                                     </div>
                                 </div>
                                 <div class="fr-card__header">
                                     <div class="fr-card__img">
-                                        <img class="fr-responsive-img" src="%BASE_URL%img/placeholder.16x9.png" alt="" />
+                                        <img class="fr-responsive-img" src="%BASE_URL%img/classement-eaux-baignade.svg" alt="" />
                                     </div>
                                     <ul class="fr-badges-group">
                                         <li>
-                                            <p class="fr-badge fr-badge--pink-tuile fr-badge--no-icon">Zones de baignade</p>
+                                            <p class="fr-badge fr-badge--pink-tuile fr-badge--no-icon">Classement</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -274,18 +274,18 @@
                                 <div class="fr-card__body">
                                     <div class="fr-card__content">
                                         <h3 class="fr-card__title">
-                                            <a href="#">Qualité microbiologique</a>
+                                            <a href="#">Surveillance de l'eau de baignade</a>
                                         </h3>
-                                        <p class="fr-card__desc">Comprenez les indicateurs recherchés (bactéries, cyanobactéries) et les seuils qui définissent une eau propre à la baignade.</p>
+                                        <p class="fr-card__desc">Avant chaque saison, l'ARS analyse l'eau des sites de baignade toutes les deux semaines. Bactéries, météo, apports des rivières : découvrez ce qui est mesuré et pourquoi la qualité peut varier d'un jour à l'autre.</p>
                                     </div>
                                 </div>
                                 <div class="fr-card__header">
                                     <div class="fr-card__img">
-                                        <img class="fr-responsive-img" src="%BASE_URL%img/placeholder.16x9.png" alt="" />
+                                        <img class="fr-responsive-img" src="%BASE_URL%img/surveillance-baignade.svg" alt="" />
                                     </div>
                                     <ul class="fr-badges-group">
                                         <li>
-                                            <p class="fr-badge fr-badge--pink-tuile fr-badge--no-icon">Qualité microbiologique</p>
+                                            <p class="fr-badge fr-badge--pink-tuile fr-badge--no-icon">Contrôle sanitaire</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -297,66 +297,321 @@
             <div class="fr-container fr-pt-2w fr-pb-4w">
                 <h2>Les grands sujets</h2>
                 <ul class="fr-raw-list" data-content-panel="potable">
-                    <li class="site-list-row">
-                        <span>Calcaire et dureté</span>
-                        <span class="fr-icon-add-line" aria-hidden="true"></span>
+                    <li>
+                        <button class="site-list-row" data-fr-opened="false" aria-controls="modal-calcaire" id="button-modal-calcaire" type="button">
+                            <span>Calcaire et dureté</span>
+                            <span class="fr-icon-add-line" aria-hidden="true"></span>
+                        </button>
                     </li>
-                    <li class="site-list-row">
-                        <span>PFAS</span>
-                        <span class="fr-icon-add-line" aria-hidden="true"></span>
+                    <li>
+                        <button class="site-list-row" data-fr-opened="false" aria-controls="modal-pfas" id="button-modal-pfas" type="button">
+                            <span>PFAS</span>
+                            <span class="fr-icon-add-line" aria-hidden="true"></span>
+                        </button>
                     </li>
-                    <li class="site-list-row">
-                        <span>Pesticides</span>
-                        <span class="fr-icon-add-line" aria-hidden="true"></span>
+                    <li>
+                        <button class="site-list-row" data-fr-opened="false" aria-controls="modal-pesticides" id="button-modal-pesticides" type="button">
+                            <span>Pesticides</span>
+                            <span class="fr-icon-add-line" aria-hidden="true"></span>
+                        </button>
                     </li>
-                    <li class="site-list-row">
-                        <span>Plomb</span>
-                        <span class="fr-icon-add-line" aria-hidden="true"></span>
+                    <li>
+                        <button class="site-list-row" data-fr-opened="false" aria-controls="modal-plomb" id="button-modal-plomb" type="button">
+                            <span>Plomb</span>
+                            <span class="fr-icon-add-line" aria-hidden="true"></span>
+                        </button>
                     </li>
                 </ul>
                 <ul class="fr-raw-list" data-content-panel="baignade" hidden>
-                    <li class="site-list-row">
-                        <span>Cyanobactéries</span>
-                        <span class="fr-icon-add-line" aria-hidden="true"></span>
+                    <li>
+                        <button class="site-list-row" data-fr-opened="false" aria-controls="modal-cyanobacteries" id="button-modal-cyanobacteries" type="button">
+                            <span>Cyanobactéries</span>
+                            <span class="fr-icon-add-line" aria-hidden="true"></span>
+                        </button>
                     </li>
-                    <li class="site-list-row">
-                        <span>Algues et proliférations</span>
-                        <span class="fr-icon-add-line" aria-hidden="true"></span>
+                    <li>
+                        <button class="site-list-row" data-fr-opened="false" aria-controls="modal-bacteries-fecales" id="button-modal-bacteries-fecales" type="button">
+                            <span>Bactéries fécales</span>
+                            <span class="fr-icon-add-line" aria-hidden="true"></span>
+                        </button>
                     </li>
-                    <li class="site-list-row">
-                        <span>Zones interdites à la baignade</span>
-                        <span class="fr-icon-add-line" aria-hidden="true"></span>
+                    <li>
+                        <button class="site-list-row" data-fr-opened="false" aria-controls="modal-pollution-pluie" id="button-modal-pollution-pluie" type="button">
+                            <span>Pollution après la pluie</span>
+                            <span class="fr-icon-add-line" aria-hidden="true"></span>
+                        </button>
                     </li>
-                    <li class="site-list-row">
-                        <span>Pollution accidentelle</span>
-                        <span class="fr-icon-add-line" aria-hidden="true"></span>
+                    <li>
+                        <button class="site-list-row" data-fr-opened="false" aria-controls="modal-algues-vertes" id="button-modal-algues-vertes" type="button">
+                            <span>Algues vertes</span>
+                            <span class="fr-icon-add-line" aria-hidden="true"></span>
+                        </button>
                     </li>
                 </ul>
             </div>
         </div>
 
-        <!-- Foire aux questions — rangées statiques (pas de fr-accordion pour l'instant, même remarque
-             que ci-dessus). -->
+        <!-- Foire aux questions — fr-accordion (structure copiée de
+             node_modules/@gouvfr/dsfr/example/component/accordion/index.html, « Groupe d'accordéons ») :
+             le DSFR gère nativement l'ouverture/fermeture et la rotation du chevron (bascule
+             d'aria-expanded par le bouton, cf. core.css .fr-accordion__btn[aria-expanded=true]:after
+             {transform:rotate(-180deg)}), aucun JS custom nécessaire. -->
         <div class="fr-container fr-pt-4w fr-mb-6w">
             <h2>Foire aux questions</h2>
-            <ul class="fr-raw-list fr-mb-4w">
-                <li class="site-list-row">
-                    <span>Qui contrôle la qualité de l'eau en France ?</span>
-                    <span class="fr-icon-arrow-down-s-line" aria-hidden="true"></span>
-                </li>
-                <li class="site-list-row">
-                    <span>Comment vérifier si je suis raccordé(e) au réseau public ?</span>
-                    <span class="fr-icon-arrow-down-s-line" aria-hidden="true"></span>
-                </li>
-                <li class="site-list-row">
-                    <span>À quelle fréquence les données sont-elles mises à jour ?</span>
-                    <span class="fr-icon-arrow-down-s-line" aria-hidden="true"></span>
-                </li>
-            </ul>
+            <div class="fr-accordions-group fr-mb-4w">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button type="button" class="fr-accordion__btn" aria-expanded="false" aria-controls="faq-controle-qualite">Qui contrôle la qualité de l'eau en France ?</button>
+                    </h3>
+                    <div class="fr-collapse" id="faq-controle-qualite">
+                        <p>Les Agences Régionales de Santé (ARS) réalisent le contrôle sanitaire réglementaire, en complément de la surveillance permanente assurée par l'exploitant du réseau (commune, régie ou opérateur privé), conformément au Code de la santé publique et à la réglementation européenne.</p>
+                    </div>
+                </section>
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button type="button" class="fr-accordion__btn" aria-expanded="false" aria-controls="faq-raccordement-reseau">Comment vérifier si je suis raccordé(e) au réseau public ?</button>
+                    </h3>
+                    <div class="fr-collapse" id="faq-raccordement-reseau">
+                        <p>L'information figure sur votre facture d'eau (nom de l'exploitant et du réseau de distribution). Vous pouvez aussi contacter votre mairie ou le service des eaux de votre commune, ou faire une recherche par adresse sur ce site.</p>
+                    </div>
+                </section>
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button type="button" class="fr-accordion__btn" aria-expanded="false" aria-controls="faq-frequence-donnees">À quelle fréquence les données sont-elles mises à jour ?</button>
+                    </h3>
+                    <div class="fr-collapse" id="faq-frequence-donnees">
+                        <p>Les résultats sont mis à jour mensuellement (avec un délai d'environ un mois après les prélèvements), au rythme de publication du Ministère de la Santé et de la base nationale SISE-Eaux.</p>
+                    </div>
+                </section>
+            </div>
             <p class="site-text-center">
                 <a href="#" class="fr-link fr-icon-arrow-right-line fr-link--icon-right">Voir toutes les questions</a>
             </p>
         </div>
+
+        <!-- Fiches « Les grands sujets », une fr-modal par sujet (structure copiée de
+             node_modules/@gouvfr/dsfr/example/component/modal/index.html, « Modale simple »).
+             Le DSFR gère nativement l'ouverture/fermeture (bascule de data-fr-opened par le
+             bouton déclencheur, aria-controls, piège à focus, fermeture Échap/clic sur le fond)
+             dès lors que l'élément est un <dialog class="fr-modal"> : aucun JS custom nécessaire.
+             site-modal--sheet (cf. style.css) surcharge uniquement la position/le habillage visuel
+             en « bottom sheet » (ancrée en bas, coins arrondis en haut) pour coller à la maquette,
+             sans toucher au mécanisme d'ouverture/fermeture du DSFR. -->
+        <dialog id="modal-calcaire" class="fr-modal site-modal--sheet" aria-labelledby="modal-calcaire-title">
+            <div class="fr-container fr-container--fluid">
+                <div class="fr-grid-row">
+                    <div class="fr-col-12">
+                        <div class="fr-modal__body">
+                            <div class="fr-modal__header">
+                                <button aria-controls="modal-calcaire" title="Fermer" type="button" class="fr-btn--close fr-btn">Fermer</button>
+                            </div>
+                            <div class="fr-modal__content">
+                                <h2 id="modal-calcaire-title" class="fr-modal__title">Calcaire et dureté</h2>
+                                <p>Le calcaire correspond à la présence naturelle de calcium et de magnésium dans l'eau. Sa concentration, appelée dureté, varie fortement d'une région à l'autre selon la nature des sols traversés.</p>
+                                <ul>
+                                    <li>Une eau dure n'est pas dangereuse pour la santé : elle apporte même du calcium et du magnésium.</li>
+                                    <li>Elle peut entartrer les appareils électroménagers et les canalisations avec le temps.</li>
+                                    <li>La dureté se mesure en degrés français (°f), au-delà de 30°f, l'eau est considérée comme dure.</li>
+                                </ul>
+                                <div class="site-modal__callout">
+                                    <p class="site-modal__callout-title">Bon à savoir</p>
+                                    <p>Un adoucisseur d'eau n'est pas obligatoire, sauf en cas de dureté très élevée et sur recommandation.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </dialog>
+
+        <dialog id="modal-pfas" class="fr-modal site-modal--sheet" aria-labelledby="modal-pfas-title">
+            <div class="fr-container fr-container--fluid">
+                <div class="fr-grid-row">
+                    <div class="fr-col-12">
+                        <div class="fr-modal__body">
+                            <div class="fr-modal__header">
+                                <button aria-controls="modal-pfas" title="Fermer" type="button" class="fr-btn--close fr-btn">Fermer</button>
+                            </div>
+                            <div class="fr-modal__content">
+                                <h2 id="modal-pfas-title" class="fr-modal__title">PFAS</h2>
+                                <p>Les PFAS (« polluants éternels ») sont des substances chimiques de synthèse utilisées depuis les années 1950 dans de nombreux produits industriels (emballages, textiles, mousses anti-incendie...). Elles sont extrêmement persistantes dans l'environnement et se retrouvent aujourd'hui dans l'eau, les sols et l'organisme humain.</p>
+                                <ul>
+                                    <li>Elles ne se dégradent pratiquement pas dans la nature, d'où leur surnom de « polluants éternels ».</li>
+                                    <li>Une exposition prolongée à fortes doses est associée à des risques pour la santé (effets sur le foie, le système immunitaire, certains cancers).</li>
+                                    <li>Depuis 2026, leur recherche est renforcée dans le contrôle sanitaire de l'eau potable en France.</li>
+                                </ul>
+                                <div class="site-modal__callout">
+                                    <p class="site-modal__callout-title">Bon à savoir</p>
+                                    <p>Un système de filtration domestique (charbon actif ou osmose inverse) peut réduire la présence de PFAS, mais n'est pas nécessaire si l'eau de votre commune respecte les seuils réglementaires.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </dialog>
+
+        <dialog id="modal-pesticides" class="fr-modal site-modal--sheet" aria-labelledby="modal-pesticides-title">
+            <div class="fr-container fr-container--fluid">
+                <div class="fr-grid-row">
+                    <div class="fr-col-12">
+                        <div class="fr-modal__body">
+                            <div class="fr-modal__header">
+                                <button aria-controls="modal-pesticides" title="Fermer" type="button" class="fr-btn--close fr-btn">Fermer</button>
+                            </div>
+                            <div class="fr-modal__content">
+                                <h2 id="modal-pesticides-title" class="fr-modal__title">Pesticides</h2>
+                                <p>Les pesticides sont des produits phytosanitaires utilisés en agriculture pour protéger les cultures. Une fois dans l'environnement, ils peuvent se dégrader en d'autres substances appelées métabolites, également recherchées dans l'eau.</p>
+                                <ul>
+                                    <li>Chaque substance active et son métabolite sont contrôlés séparément, avec une limite de 0,1 µg/L chacun.</li>
+                                    <li>La limite totale pour l'ensemble des pesticides détectés est de 0,5 µg/L.</li>
+                                    <li>Les résidus les plus fréquemment détectés proviennent d'herbicides et de fongicides utilisés dans les grandes cultures.</li>
+                                </ul>
+                                <div class="site-modal__callout">
+                                    <p class="site-modal__callout-title">Bon à savoir</p>
+                                    <p>Un léger dépassement ponctuel ne signifie pas automatiquement un risque sanitaire immédiat — les seuils réglementaires intègrent une importante marge de sécurité.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </dialog>
+
+        <dialog id="modal-plomb" class="fr-modal site-modal--sheet" aria-labelledby="modal-plomb-title">
+            <div class="fr-container fr-container--fluid">
+                <div class="fr-grid-row">
+                    <div class="fr-col-12">
+                        <div class="fr-modal__body">
+                            <div class="fr-modal__header">
+                                <button aria-controls="modal-plomb" title="Fermer" type="button" class="fr-btn--close fr-btn">Fermer</button>
+                            </div>
+                            <div class="fr-modal__content">
+                                <h2 id="modal-plomb-title" class="fr-modal__title">Plomb</h2>
+                                <p>Le plomb peut se retrouver dans l'eau du robinet lorsqu'elle traverse d'anciennes canalisations ou branchements en plomb, aujourd'hui interdits pour les nouvelles installations.</p>
+                                <ul>
+                                    <li>Le risque est surtout lié à l'ancienneté du bâtiment, pas à la qualité de l'eau à la sortie de l'usine de traitement.</li>
+                                    <li>La limite réglementaire est de 10 µg/L (renforcée par rapport à l'ancienne norme de 25 µg/L).</li>
+                                    <li>Le remplacement des branchements publics en plomb est en cours dans toute la France.</li>
+                                </ul>
+                                <div class="site-modal__callout">
+                                    <p class="site-modal__callout-title">Bon à savoir</p>
+                                    <p>Laisser couler l'eau quelques secondes le matin (avant de la boire) réduit la stagnation dans d'éventuelles canalisations en plomb.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </dialog>
+
+        <dialog id="modal-cyanobacteries" class="fr-modal site-modal--sheet" aria-labelledby="modal-cyanobacteries-title">
+            <div class="fr-container fr-container--fluid">
+                <div class="fr-grid-row">
+                    <div class="fr-col-12">
+                        <div class="fr-modal__body">
+                            <div class="fr-modal__header">
+                                <button aria-controls="modal-cyanobacteries" title="Fermer" type="button" class="fr-btn--close fr-btn">Fermer</button>
+                            </div>
+                            <div class="fr-modal__content">
+                                <h2 id="modal-cyanobacteries-title" class="fr-modal__title">Cyanobactéries</h2>
+                                <p>Micro-organismes aquatiques naturellement présents dans les eaux douces, qui peuvent proliférer en cas de forte chaleur et d'excès de nutriments (phosphore, azote), formant des « fleurs d'eau » parfois toxiques.</p>
+                                <ul>
+                                    <li>Certaines espèces produisent des toxines pouvant provoquer irritations cutanées, troubles digestifs ou respiratoires.</li>
+                                    <li>Une prolifération se manifeste souvent par une couleur verdâtre ou des dépôts en surface de l'eau.</li>
+                                    <li>En cas d'alerte, la baignade est interdite jusqu'à ce que les analyses redeviennent favorables.</li>
+                                </ul>
+                                <div class="site-modal__callout">
+                                    <p class="site-modal__callout-title">Bon à savoir</p>
+                                    <p>Ne laissez jamais un enfant ou un animal boire l'eau d'un plan d'eau, même en l'absence d'alerte visible.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </dialog>
+
+        <dialog id="modal-bacteries-fecales" class="fr-modal site-modal--sheet" aria-labelledby="modal-bacteries-fecales-title">
+            <div class="fr-container fr-container--fluid">
+                <div class="fr-grid-row">
+                    <div class="fr-col-12">
+                        <div class="fr-modal__body">
+                            <div class="fr-modal__header">
+                                <button aria-controls="modal-bacteries-fecales" title="Fermer" type="button" class="fr-btn--close fr-btn">Fermer</button>
+                            </div>
+                            <div class="fr-modal__content">
+                                <h2 id="modal-bacteries-fecales-title" class="fr-modal__title">Bactéries fécales</h2>
+                                <p>Les bactéries fécales (E. coli, entérocoques) témoignent d'une contamination par des matières fécales, humaines ou animales, souvent liée à des rejets d'eaux usées ou au ruissellement agricole.</p>
+                                <ul>
+                                    <li>Leur présence est un indicateur indirect du risque de présence d'autres agents pathogènes.</li>
+                                    <li>Une contamination peut provoquer troubles digestifs, otites ou irritations en cas de baignade.</li>
+                                    <li>Les sites sont analysés régulièrement pendant la saison balnéaire pour détecter tout dépassement.</li>
+                                </ul>
+                                <div class="site-modal__callout">
+                                    <p class="site-modal__callout-title">Bon à savoir</p>
+                                    <p>Évitez de vous baigner la tête sous l'eau dans les zones où le classement n'est pas « excellent » ou « bonne qualité ».</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </dialog>
+
+        <dialog id="modal-pollution-pluie" class="fr-modal site-modal--sheet" aria-labelledby="modal-pollution-pluie-title">
+            <div class="fr-container fr-container--fluid">
+                <div class="fr-grid-row">
+                    <div class="fr-col-12">
+                        <div class="fr-modal__body">
+                            <div class="fr-modal__header">
+                                <button aria-controls="modal-pollution-pluie" title="Fermer" type="button" class="fr-btn--close fr-btn">Fermer</button>
+                            </div>
+                            <div class="fr-modal__content">
+                                <h2 id="modal-pollution-pluie-title" class="fr-modal__title">Pollution après la pluie</h2>
+                                <p>Après de fortes pluies, les réseaux d'assainissement peuvent être saturés et déverser des eaux insuffisamment traitées dans les rivières, lacs ou zones côtières, dégradant temporairement la qualité de l'eau.</p>
+                                <ul>
+                                    <li>Le ruissellement entraîne aussi des polluants agricoles et urbains vers les points d'eau.</li>
+                                    <li>La dégradation est généralement temporaire, avec un retour à la normale en quelques jours.</li>
+                                    <li>De nombreuses communes appliquent une interdiction de baignade automatique 24 à 48h après un épisode pluvieux important.</li>
+                                </ul>
+                                <div class="site-modal__callout">
+                                    <p class="site-modal__callout-title">Bon à savoir</p>
+                                    <p>Il est recommandé d'éviter la baignade dans les 48h suivant un fort orage, même sans interdiction officielle affichée.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </dialog>
+
+        <dialog id="modal-algues-vertes" class="fr-modal site-modal--sheet" aria-labelledby="modal-algues-vertes-title">
+            <div class="fr-container fr-container--fluid">
+                <div class="fr-grid-row">
+                    <div class="fr-col-12">
+                        <div class="fr-modal__body">
+                            <div class="fr-modal__header">
+                                <button aria-controls="modal-algues-vertes" title="Fermer" type="button" class="fr-btn--close fr-btn">Fermer</button>
+                            </div>
+                            <div class="fr-modal__content">
+                                <h2 id="modal-algues-vertes-title" class="fr-modal__title">Algues vertes</h2>
+                                <p>Les algues vertes prolifèrent principalement sur le littoral, notamment en Bretagne, en raison d'un excès de nutriments (nitrates) dans l'eau de mer, favorisé par les activités agricoles.</p>
+                                <ul>
+                                    <li>Leur décomposition sur les plages peut dégager des gaz (hydrogène sulfuré) potentiellement dangereux à forte concentration.</li>
+                                    <li>Les zones concernées font l'objet d'un ramassage régulier et d'une surveillance renforcée.</li>
+                                    <li>Le phénomène est saisonnier, plus marqué en été lors des fortes chaleurs.</li>
+                                </ul>
+                                <div class="site-modal__callout">
+                                    <p class="site-modal__callout-title">Bon à savoir</p>
+                                    <p>Évitez de vous approcher des tas d'algues en décomposition, surtout dans les zones creuses ou peu ventilées.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </dialog>
     </main>
 
     <!-- Pied de page DSFR — structure copiée de node_modules/@gouvfr/dsfr/example/component/footer/index.html
