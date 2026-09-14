@@ -1,3 +1,213 @@
 /* Styles spécifiques au site, en complément du DSFR. Mobile-first : les
    règles ci-dessous s'appliquent par défaut aux petits écrans, les media
    queries ajoutent des ajustements pour les écrans plus larges. */
+
+/* Pas de classe utilitaire fr-text--center dans le bundle chargé (elle vit
+   dans utility.css, non importé — cf. commentaire sur .site-section--tinted
+   plus bas pour la même raison). Utilisé pour centrer « Voir toutes les
+   questions », conformément à la maquette. */
+.site-text-center {
+  text-align: center;
+}
+
+/* Rangées statiques (« Les grands sujets », FAQ) en attendant leur
+   conversion en fr-accordion dans un second temps. Couleur bleue identique
+   à celle des titres de carte cliquables (« Écosystème de distribution »...) :
+   c'est la couleur de lien par défaut du DSFR (règle a{color:var(--text-
+   action-high-blue-france)} dans core.css), appliquée ici explicitement
+   puisque ce sont des <span>, pas des liens. currentColor sur les icônes
+   (::before, cf. règle générique [class^=fr-icon-] dans core.css) les fait
+   suivre automatiquement la même couleur. */
+.site-list-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-default-grey);
+  color: var(--text-action-high-blue-france);
+}
+
+.site-list-row:first-child {
+  border-top: 1px solid var(--border-default-grey);
+}
+
+/* Fond légèrement teinté (maquette Figma) pour certaines sections.
+   #F5F5FE correspond au token DSFR --background-alt-blue-france
+   (bleu France, fond alternatif) ; utilisé via la variable plutôt que
+   la classe utilitaire fr-background-alt--blue-france pour éviter
+   d'importer le fichier utility.css complet (~450 Ko) pour une seule
+   couleur. */
+.site-section--tinted {
+  background-color: var(--background-alt-blue-france);
+}
+
+/* Icône « Baignade » du contrôle segmenté (fourni par l'équipe design,
+   src/assets/pool.svg — ne fait pas partie de la bibliothèque fr-icon-*
+   du DSFR). Reprend exactement le mécanisme des icônes DSFR (masque CSS
+   + currentColor, cf. [class^=fr-icon-]::before dans dist/core/core.css)
+   pour un rendu identique à fr-icon-drop-line utilisé pour « Eau potable » :
+   même taille, et couleur qui suit l'état sélectionné du label. */
+.site-icon-pool::before {
+  content: "";
+  display: inline-block;
+  vertical-align: calc((0.75em - var(--icon-size)) * 0.5);
+  background-color: currentColor;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  -webkit-mask-image: url("./assets/pool.svg");
+  mask-image: url("./assets/pool.svg");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  --icon-size: 1.5rem;
+}
+
+/* Tags cliquables « Contenu pédagogique » (fr-tag sélectionnable, aria-pressed).
+   L'état inactif ([aria-pressed=false]) est déjà bleu clair/texte bleu foncé par
+   défaut dans le DSFR (cf. component/tag/tag.css) et correspond à la maquette :
+   pas de surcharge nécessaire. L'état actif par défaut du DSFR est en revanche un
+   simple badge en coin sur fond transparent (découpé via background-image:
+   radial-gradient), alors que la maquette attend un remplissage plein bleu foncé
+   avec texte blanc — on surcharge donc avec les tokens DSFR déjà utilisés ailleurs
+   pour ce même rendu (fr-tag--dismiss, cf. tag.css) et on retire le badge en coin
+   (::after). Le sélecteur reprend le :not(:disabled) du DSFR (component/tag/tag.css,
+   règle button.fr-tag[aria-pressed=true]:not(:disabled)) : sans lui, notre règle a
+   une spécificité inférieure à celle du DSFR et perd la bataille de cascade — le
+   radial-gradient restait visible et rognait le coin haut-droit du tag actif. */
+button.fr-tag[aria-pressed="true"]:not(:disabled) {
+  background-color: var(--background-action-high-blue-france);
+  background-image: none;
+  color: var(--text-inverted-blue-france);
+}
+
+button.fr-tag[aria-pressed="true"]:not(:disabled):hover {
+  background-color: var(--background-action-high-blue-france-hover);
+}
+
+button.fr-tag[aria-pressed="true"]:not(:disabled):active {
+  background-color: var(--background-action-high-blue-france-active);
+}
+
+button.fr-tag[aria-pressed="true"]::after {
+  content: none;
+}
+
+/* Espacements précis fournis par la maquette Figma (mode Inspect). Les
+   conteneurs restent en largeur fluide (100% de leur parent) : seules les
+   valeurs de padding/gap/ombre sont reprises telles quelles, jamais de
+   largeur figée en pixels, pour que le rendu reste correct sur toute la
+   plage des largeurs mobiles (~360-428px), pas seulement sur l'écran de
+   référence Figma (~375-390px). Les paddings horizontaux par défaut de
+   fr-container (16px, cf. .fr-container{padding-left/right:1rem} dans
+   dist/core/core.css) correspondent déjà exactement aux valeurs demandées.
+   .fr-card__body a par défaut padding:0 2rem et .fr-card__content
+   padding:2rem;margin:0 -2rem (astuce DSFR qui les annule mutuellement à
+   l'horizontale) ; on neutralise les deux pour appliquer nos propres
+   valeurs sans empilement. Les marges par défaut des titres/paragraphes
+   DSFR (h2-h6: margin:0 0 1.5rem ; fr-card__desc: margin-top:.75rem) sont
+   remises à zéro sur les enfants directs pour que le gap soit la seule
+   source d'espacement, comme spécifié par la maquette. */
+
+.site-search-card {
+  border-radius: 4px;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 18, 0.16);
+  filter: none;
+}
+
+.site-search-card .fr-card__body {
+  padding: 0;
+}
+
+.site-search-card .fr-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px 16px;
+  margin: 0;
+  width: 100%;
+}
+
+.site-search-card .fr-card__content > * {
+  margin: 0;
+}
+
+/* align-self:stretch sur les enfants qui doivent occuper toute la largeur
+   (switch, barre de recherche, bouton) : la maquette Figma donne
+   align-items:flex-start sur le conteneur, qui par défaut réduirait ces
+   éléments à leur largeur de contenu au lieu de la pleine largeur voulue. */
+.site-search-card .fr-segmented,
+.site-search-card .fr-search-bar,
+.site-search-card .fr-hr-or,
+.site-search-card .fr-btns-group {
+  align-self: stretch;
+}
+
+/* Contrôle segmenté : la maquette demande explicitement 2 segments de
+   largeur égale (50/50) occupant toute la largeur de la carte bord à bord,
+   pas la largeur au contenu par défaut du DSFR. Le DSFR bascule déjà
+   .fr-segmented en display:block sur mobile (légende empilée au-dessus des
+   segments, à ne pas casser) ; on ne touche donc pas au fieldset lui-même.
+   .fr-segmented__elements (display:flex;flex-direction:row par défaut) est
+   un <div> block-level, déjà pleine largeur de son parent par défaut — le
+   width:100% ici est une garantie explicite plutôt qu'une nécessité. Le
+   vrai changement est flex:1 sur chaque segment : par défaut le DSFR les
+   laisse flex:0 1 auto (largeur au contenu), d'où le partage inégal. */
+.site-search-card .fr-segmented__elements {
+  width: 100%;
+}
+
+.site-search-card .fr-segmented__element {
+  flex: 1;
+}
+
+/* Icône + libellé centrés dans chaque segment (maquette). Le label du DSFR
+   (.fr-segmented input~label, cf. component/segmented/segmented.css) est
+   display:inline-flex;align-items:center mais sans justify-content ni gap
+   explicites : par défaut le contenu (icône ::before + texte) colle à
+   gauche. gap:0.5rem (8px, échelle DSFR) garantit un espacement icône/texte
+   cohérent quel que soit le segment. */
+.site-search-card .fr-segmented__element label {
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.site-content-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 16px;
+  gap: 32px;
+}
+
+.site-content-section > * {
+  margin: 0;
+}
+
+.site-article-card .fr-card__body {
+  padding: 0;
+}
+
+/* Sélecteur .fr-card.fr-enlarge-link.site-article-card (3 classes sur l'ancêtre)
+   plutôt que .site-article-card seul : le DSFR réserve padding-bottom:5rem sur
+   .fr-card.fr-enlarge-link:not(.fr-card--no-icon) .fr-card__content pour la
+   flèche positionnée en absolu (bottom:2rem;right:2rem, cf. card.css) — cette
+   règle a une spécificité de 4 classes, il faut l'égaler pour la surcharger.
+   padding-bottom volontairement différent des 3 autres côtés (24px) : la
+   flèche reste positionnée en absolu par le DSFR (bottom:2rem=32px, hauteur
+   24px, donc occupe la zone 32-56px depuis le bas) ; un padding-bottom de
+   24px collait le texte contre la flèche. 64px laisse ~8px de respiration
+   nette entre la dernière ligne de texte et la flèche, sur l'échelle 8px. */
+.fr-card.fr-enlarge-link.site-article-card .fr-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 24px 24px 64px;
+  margin: 0;
+  align-self: stretch;
+}
+
+.site-article-card .fr-card__content > * {
+  margin: 0;
+}
