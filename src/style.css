@@ -253,12 +253,12 @@ button.fr-tag[aria-pressed="true"]::after {
   box-shadow: 0 -4px 16px 0 rgba(0, 0, 18, 0.16);
 }
 
-/* Encart « Bon à savoir » des fiches : mêmes tokens DSFR que le fond des tags
-   inactifs de « Contenu pédagogique » (background-action-low-blue-france,
-   text-action-high-blue-france) pour rester cohérent avec le reste du site,
-   plus une bordure gauche pleine dans le bleu France par défaut du DSFR
-   (border-default-blue-france, déjà utilisé par fr-callout pour le même
-   effet de liseré coloré). */
+/* Encart « Bon à savoir » des fiches : seule la bordure gauche est dans le
+   bleu France par défaut du DSFR (border-default-blue-france, déjà utilisé
+   par fr-callout pour le même effet de liseré coloré) sur un fond bleu très
+   clair (background-action-low-blue-france, même token que le fond des tags
+   inactifs). Le titre et le texte restent en couleurs de texte DSFR standard
+   (grey), pas en bleu : seul le fond/la bordure marque l'encart. */
 .site-modal__callout {
   background-color: var(--background-action-low-blue-france);
   border-left: 4px solid var(--border-default-blue-france);
@@ -268,11 +268,12 @@ button.fr-tag[aria-pressed="true"]::after {
 }
 
 .site-modal__callout-title {
+  color: var(--text-title-grey);
   font-weight: 700;
   margin: 0 0 0.5rem;
 }
 
-.site-modal__callout p {
+.site-modal__callout p:not(.site-modal__callout-title) {
+  color: var(--text-default-grey);
   margin: 0;
-  color: var(--text-action-high-blue-france);
 }
